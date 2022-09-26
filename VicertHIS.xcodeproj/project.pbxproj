@@ -13,6 +13,7 @@
 		9782A12D28E1BC3A0045B4B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9782A12C28E1BC3A0045B4B4 /* Assets.xcassets */; };
 		9782A13028E1BC3A0045B4B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9782A12E28E1BC3A0045B4B4 /* LaunchScreen.storyboard */; };
 		9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13828E1C10B0045B4B4 /* LoginController.swift */; };
+		9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9782A12F28E1BC3A0045B4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9782A13128E1BC3A0045B4B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9782A13828E1C10B0045B4B4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			children = (
 				9782A13828E1C10B0045B4B4 /* LoginController.swift */,
 				9782A12728E1BC390045B4B4 /* ViewController.swift */,
+				9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				9782A12828E1BC390045B4B4 /* ViewController.swift in Sources */,
 				9782A12428E1BC390045B4B4 /* AppDelegate.swift in Sources */,
 				9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */,
+				9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */,
 				9782A12628E1BC390045B4B4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
