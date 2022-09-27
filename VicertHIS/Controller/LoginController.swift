@@ -51,7 +51,11 @@ class LoginController: UIViewController {
     
     
     @objc func handleReset() {
-        present(ResetPasswordController(), animated: true, completion: nil)
+       
+        //when clicked on resetPassword we want to launch our resetPasswordController
+        let resetPasswordController = ResetPasswordController()
+        let navController = UINavigationController(rootViewController: resetPasswordController)
+        present(navController, animated: true, completion: nil)
     }
     
     
@@ -59,6 +63,7 @@ class LoginController: UIViewController {
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "E-mail adress"
+        tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -74,6 +79,7 @@ class LoginController: UIViewController {
     let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.textColor = UIColor.systemPurple
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.isSecureTextEntry = true
         return tf
@@ -81,7 +87,7 @@ class LoginController: UIViewController {
     
     // *** profile image view
    lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "health1"))
+        let imageView = UIImageView(image: UIImage(named: "health"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         
@@ -95,7 +101,8 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(r: 203, g: 195, b: 227)
+        //view.backgroundColor = UIColor(r: 203, g: 195, b: 227)
+        view.backgroundColor = UIColor.white
         
         view.addSubview(inputsContainerView)
         view.addSubview(loginButton)
