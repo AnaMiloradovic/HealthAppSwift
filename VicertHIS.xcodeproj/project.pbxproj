@@ -15,7 +15,8 @@
 		9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13828E1C10B0045B4B4 /* LoginController.swift */; };
 		9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */; };
 		9782A13D28E2FC2A0045B4B4 /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13C28E2FC2A0045B4B4 /* ResetPassword.swift */; };
-		9782A13F28E307AD0045B4B4 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13E28E307AD0045B4B4 /* Login.swift */; };
+		9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14128E328C10045B4B4 /* ApiCalls.swift */; };
+		9782A14428E3481E0045B4B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14328E3481E0045B4B4 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		9782A13828E1C10B0045B4B4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		9782A13C28E2FC2A0045B4B4 /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
-		9782A13E28E307AD0045B4B4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		9782A14128E328C10045B4B4 /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
+		9782A14328E3481E0045B4B4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,7 @@
 		9782A12228E1BC390045B4B4 /* VicertHIS */ = {
 			isa = PBXGroup;
 			children = (
-				9782A14028E307CA0045B4B4 /* PostRequests */,
+				9782A14028E307CA0045B4B4 /* PostApiCalls */,
 				9782A13728E1C0DB0045B4B4 /* Controller */,
 				9782A12328E1BC390045B4B4 /* AppDelegate.swift */,
 				9782A12528E1BC390045B4B4 /* SceneDelegate.swift */,
@@ -79,17 +81,18 @@
 				9782A13828E1C10B0045B4B4 /* LoginController.swift */,
 				9782A12728E1BC390045B4B4 /* ViewController.swift */,
 				9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */,
+				9782A14128E328C10045B4B4 /* ApiCalls.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		9782A14028E307CA0045B4B4 /* PostRequests */ = {
+		9782A14028E307CA0045B4B4 /* PostApiCalls */ = {
 			isa = PBXGroup;
 			children = (
-				9782A13E28E307AD0045B4B4 /* Login.swift */,
 				9782A13C28E2FC2A0045B4B4 /* ResetPassword.swift */,
+				9782A14328E3481E0045B4B4 /* User.swift */,
 			);
-			path = PostRequests;
+			path = PostApiCalls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,11 +167,12 @@
 			files = (
 				9782A12828E1BC390045B4B4 /* ViewController.swift in Sources */,
 				9782A12428E1BC390045B4B4 /* AppDelegate.swift in Sources */,
-				9782A13F28E307AD0045B4B4 /* Login.swift in Sources */,
+				9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */,
 				9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */,
 				9782A13D28E2FC2A0045B4B4 /* ResetPassword.swift in Sources */,
 				9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */,
 				9782A12628E1BC390045B4B4 /* SceneDelegate.swift in Sources */,
+				9782A14428E3481E0045B4B4 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
