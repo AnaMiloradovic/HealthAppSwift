@@ -15,6 +15,14 @@ struct User: Codable {
     let password: String
 }
 
+struct ResetPassword: Codable {
+    let email: String
+    let oldPassword: String
+    let newPassword: String
+    let confirmNewPassword: String
+}
+
+
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
@@ -32,26 +40,32 @@ struct User: Codable {
 
 
 
-// MARK: - Welcome
-struct Welcome: Codable {
+// MARK: - LoginResponse
+struct LoginResponse: Codable {
     let errors: [String]?
     let token: String?
-    let result: Result?
+    let result: LoginResult?
     let roles: [String?]
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.resultTask(with: url) { result, response, error in
-//     if let result = result {
-//       ...
-//     }
-//   }
-//   task.resume()
+// MARK: - ResetPasswordResponse
+struct ResetPasswordResponse: Codable {
+    let errors: [String?]
+    let token, result: JSONNull?
+    let roles: [String]?
+    let type: String?
+    let title: String?
+    let status: Int?
+    let traceID: String?
+
+    enum CodingKeys: String, CodingKey {
+        case errors, token, result, roles, type, title, status
+        case traceID = "traceId"
+    }
+}
 
 // MARK: - Result
-struct Result: Codable {
+struct LoginResult: Codable {
     let seniority, id, firstName, lastName: String?
     let email, address, phone, dateOfBirth: String?
 
@@ -93,7 +107,7 @@ extension URLSession {
         }
     }
 
-    func welcomeTask(with url: URL, completionHandler: @escaping (Welcome?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func welcomeTask(with url: URL, completionHandler: @escaping (LoginResponse?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }
 }
@@ -338,4 +352,11 @@ class JSONAny: Codable {
             try JSONAny.encode(to: &container, value: self.value)
         }
     }
+}
+
+
+struct Post:Codable {
+    let id: Int
+    let title: String
+    let body: String
 }

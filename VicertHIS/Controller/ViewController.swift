@@ -18,11 +18,17 @@ class ViewController: UITableViewController {
         
         //getPosts()
         //postResetPassword()
-        postLogin()
-        //postData()
+        //postLogin()
+        postDoctorsAppointment()
         
+        //postGetAllByUser()
+        //getAll()
+        //getWithId(id: 1)
+        //deleteAppointmentWithId(id: 1)
+        
+        //putUpdateAppointment()
        
-        
+    
     }
     
 
