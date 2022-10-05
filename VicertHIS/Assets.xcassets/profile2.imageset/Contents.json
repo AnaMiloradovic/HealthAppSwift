@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "icons8-customer-16.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-health-64 (1).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

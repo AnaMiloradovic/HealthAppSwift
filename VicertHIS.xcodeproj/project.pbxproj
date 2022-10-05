@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		97632D3A28E5A54F00FC51C6 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97632D3928E5A54F00FC51C6 /* Appointment.swift */; };
+		97632D3C28EC2E6E00FC51C6 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97632D3B28EC2E6E00FC51C6 /* CustomTabBarController.swift */; };
+		97632D3E28EC2FA600FC51C6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97632D3D28EC2FA600FC51C6 /* HomeController.swift */; };
+		97632D4028EC2FD500FC51C6 /* AppointmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97632D3F28EC2FD500FC51C6 /* AppointmentsController.swift */; };
+		97632D4228EC2FE700FC51C6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97632D4128EC2FE700FC51C6 /* ProfileController.swift */; };
 		9782A12428E1BC390045B4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A12328E1BC390045B4B4 /* AppDelegate.swift */; };
 		9782A12628E1BC390045B4B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A12528E1BC390045B4B4 /* SceneDelegate.swift */; };
 		9782A12828E1BC390045B4B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A12728E1BC390045B4B4 /* ViewController.swift */; };
@@ -21,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		97632D3928E5A54F00FC51C6 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		97632D3B28EC2E6E00FC51C6 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		97632D3D28EC2FA600FC51C6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		97632D3F28EC2FD500FC51C6 /* AppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsController.swift; sourceTree = "<group>"; };
+		97632D4128EC2FE700FC51C6 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		9782A12028E1BC390045B4B4 /* VicertHIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VicertHIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9782A12328E1BC390045B4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9782A12528E1BC390045B4B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +90,10 @@
 				9782A12728E1BC390045B4B4 /* ViewController.swift */,
 				9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */,
 				9782A14128E328C10045B4B4 /* ApiCalls.swift */,
+				97632D3B28EC2E6E00FC51C6 /* CustomTabBarController.swift */,
+				97632D3D28EC2FA600FC51C6 /* HomeController.swift */,
+				97632D3F28EC2FD500FC51C6 /* AppointmentsController.swift */,
+				97632D4128EC2FE700FC51C6 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -168,11 +180,15 @@
 				9782A12828E1BC390045B4B4 /* ViewController.swift in Sources */,
 				9782A12428E1BC390045B4B4 /* AppDelegate.swift in Sources */,
 				9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */,
+				97632D4028EC2FD500FC51C6 /* AppointmentsController.swift in Sources */,
 				97632D3A28E5A54F00FC51C6 /* Appointment.swift in Sources */,
+				97632D3E28EC2FA600FC51C6 /* HomeController.swift in Sources */,
 				9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */,
 				9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */,
 				9782A12628E1BC390045B4B4 /* SceneDelegate.swift in Sources */,
+				97632D3C28EC2E6E00FC51C6 /* CustomTabBarController.swift in Sources */,
 				9782A14428E3481E0045B4B4 /* User.swift in Sources */,
+				97632D4228EC2FE700FC51C6 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

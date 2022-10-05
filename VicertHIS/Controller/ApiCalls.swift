@@ -46,7 +46,7 @@ func postResetPassword() {
                
                 let object = try newJSONDecoder().decode(ResetPasswordResponse.self, from: data!)
                 print("Result is: \(object)")
-                print("Response is: \(response)")
+                print("Response is: \(String(describing: response))")
                 print("****************************")
                
             }  catch let error as NSError {
@@ -88,8 +88,8 @@ func postLogin() {
         }
         
         
-        print("Data: ")
-        print(data as! NSData)
+       // print("Data: ")
+        //print(data as! NSData)
         if let error = error {
             print("There was an error: \(error.localizedDescription)")
         } else{
@@ -98,7 +98,7 @@ func postLogin() {
                
                 let welcome = try newJSONDecoder().decode(LoginResponse.self, from: data!)
                 print("Result is: \(welcome)")
-                print("Response is: \(response)")
+                print("Response is: \(String(describing: response))")
                 print("****************************")
                // let res: Result? = welcome.result
                // print("seniority is: \(res?.seniority)")
@@ -148,8 +148,7 @@ func postDoctorsAppointment() {
     URLSession.shared.dataTask(with: request) {
         data, response, error in
         
-        print("Data: \(data)")
-        print(data as! NSData)
+       
         
         if let httpResponse = response as? HTTPURLResponse {
             print("Status code: \(httpResponse.statusCode)")
@@ -209,8 +208,8 @@ func postGetAllByUser() {
             
         }
         
-        print("Data: ")
-        print(data as! NSData)
+       // print("Data: ")
+       // print(data as! NSData)
         if let error = error {
             print("There was an error: \(error.localizedDescription)")
         } else{
@@ -219,7 +218,7 @@ func postGetAllByUser() {
                
                 let object = try newJSONDecoder().decode(ResponseGetAll.self, from: data!)
                 print("Result is: \(object)")
-                print("Response is: \(response)")
+                print("Response is: \(String(describing: response))")
                 print("****************************")
                
             }  catch let error as NSError {
@@ -302,7 +301,7 @@ func getAll(){
             
             let task = session.dataTask(with: url) { data, response, error in
                 
-                print("request is: \(data as! NSData)")
+               // print("request is: \(data as! NSData)")
                 
                 if let httpResponse = response as? HTTPURLResponse {
                     print("Status code: \(httpResponse.statusCode)")
@@ -407,14 +406,14 @@ func deleteAppointmentWithId(id: Int){
                 
                 let task = session.dataTask(with: request) { data, response, error in
                     
-                    print("request is: \(data as! NSData)")
+                   // print("request is: \(data as! NSData)")
                     
                     if let error = error {
                         print("Something went wrong with request: \(error.localizedDescription)")
                         return
                     }
                     
-                    guard let data = data else{
+                    guard data != nil else{
                         print("No data found.")
                         return
                     }
@@ -425,7 +424,8 @@ func deleteAppointmentWithId(id: Int){
                         print(httpResponse.debugDescription)
                     }
                     
-                    if error != nil || data == nil {
+                    // || data == nil
+                    if error != nil {
                         print("Client error!" )
                         return
                     }
@@ -469,11 +469,11 @@ func putUpdateAppointment(){
             
             let task = session.dataTask(with: request) { data, response, error in
                 
-                print("request is: \(data as! NSData)")
+                //print("request is: \(data as! NSData)")
                 
                 guard error == nil else {
                     print("Error: error calling PUT")
-                    print(error)
+                    print(error as Any)
                     return
                 }
                 
@@ -488,7 +488,8 @@ func putUpdateAppointment(){
                     print(httpResponse.debugDescription)
                 }
                 
-                if error != nil || data == nil {
+                //|| data == nil
+                if error != nil  {
                     print("Client error!" )
                     return
                 }
@@ -510,6 +511,7 @@ func putUpdateAppointment(){
                       
                   }
              
+    
               //  let object = try? JSONSerialization.jsonObject(with: data, options: [])
                 // print("\(object)")
                 //print("\(response)")

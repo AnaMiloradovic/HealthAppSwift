@@ -35,7 +35,12 @@ class LoginController: UIViewController {
     }()
     
     @objc func handleLogin() {
-        print(123)
+        //when clicked on handleLogin we want to launch to an empty tab bar with 3 view controllers
+        let navBar = CustomTabBarController()
+        navBar.tabBar.backgroundColor = .white
+        
+        let navController = UINavigationController(rootViewController: navBar)
+        present(navController, animated: true, completion: nil)
     }
     
     lazy var resetButton: UIButton = {
@@ -87,7 +92,7 @@ class LoginController: UIViewController {
     
     // *** profile image view
    lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "health"))
+        let imageView = UIImageView(image: UIImage(named: "health2"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         

@@ -51,7 +51,7 @@ struct LoginResponse: Codable {
 // MARK: - ResetPasswordResponse
 struct ResetPasswordResponse: Codable {
     let errors: [String?]
-    let token, result: JSONNull?
+    let token, result: String? //JSONNull
     let roles: [String]?
     let type: String?
     let title: String?
@@ -114,6 +114,8 @@ extension URLSession {
 
 // MARK: - Encode/decode helpers
 
+
+
 class JSONNull: Codable, Hashable {
 
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
@@ -137,7 +139,7 @@ class JSONNull: Codable, Hashable {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
     }
-}
+}  
 
 class JSONCodingKey: CodingKey {
     let key: String
