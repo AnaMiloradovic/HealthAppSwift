@@ -8,6 +8,12 @@
 import UIKit
 
 
+struct Appoitments {
+    let date: String?
+    let startTime: String?
+    let patient: String?
+}
+
 struct DoctorsAppointments: Codable {
     let doctorId: String
     let startDate: Date  //"2022-09-20", YYYY-mm-dd
