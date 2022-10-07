@@ -31,7 +31,6 @@ class UserCell: UITableViewCell{
         setupViews()
     }
     
-    
     let dayImage: UIImageView = {
         
          let imageView = UIImageView(image: UIImage(named: "calendar2"))
@@ -80,7 +79,6 @@ class UserCell: UITableViewCell{
         //label.text = "04:00 PM"
         return label
     }()
-    
     
     
     let patientImage: UIImageView = {
@@ -206,9 +204,6 @@ class HomeController: UITableViewController {
     
    
     let cellId = "cellId"
-   
-    
-  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -216,6 +211,9 @@ class HomeController: UITableViewController {
         tableView.backgroundColor = .white
         navigationItem.title = "Home"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        view.backgroundColor = UIColor(r: 255, g: 251, b: 230)
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         

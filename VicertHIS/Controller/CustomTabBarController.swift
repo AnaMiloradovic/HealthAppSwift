@@ -26,10 +26,15 @@ class CustomTabBarController: UITabBarController {
         let profileNavControler = UINavigationController(rootViewController: ProfileController())
         profileNavControler.tabBarItem.title = "Profile"
         profileNavControler.title = "Profile"
-     
         profileNavControler.tabBarItem.image = UIImage(named: "profile2")
   
-        viewControllers = [homeNavControler, appointmentsNavControler, profileNavControler]
+        let findCareController = UINavigationController(rootViewController: FindCareController())
+        findCareController.tabBarItem.title = "Find Care"
+        findCareController.title = "Find Care"
+        findCareController.tabBarItem.image = UIImage(named: "doctor2")
+        
+        
+        viewControllers = [homeNavControler, appointmentsNavControler, profileNavControler, findCareController]
         
         tabBar.isTranslucent = false
         
