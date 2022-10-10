@@ -22,7 +22,7 @@ class DoctorsCell: UITableViewCell {
     let doctorsName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(r: 68, g: 44, b: 46)
+        label.textColor = UIColor(r: 108, g: 198, b: 68)
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 23, weight: .bold)
         return label
@@ -41,9 +41,9 @@ class DoctorsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .natural
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor(r: 68, g: 44, b: 46)
+        label.textColor = .white
         return label
     }()
     
@@ -59,9 +59,9 @@ class DoctorsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .natural
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor(r: 68, g: 44, b: 46)
+        label.textColor = .white
         return label
     }()
     
@@ -77,9 +77,9 @@ class DoctorsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .natural
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor(r: 68, g: 44, b: 46)
+        label.textColor = .white
         return label
     }()
     
@@ -95,8 +95,8 @@ class DoctorsCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .natural
-        label.font = .systemFont(ofSize: 16, weight: .light)
-        label.textColor = UIColor(r: 68, g: 44, b: 46)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
         return label
     }()

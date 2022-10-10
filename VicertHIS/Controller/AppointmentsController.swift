@@ -12,10 +12,14 @@ class AppointmentsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemYellow
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [UIColor(r: 17, g: 28, b: 0).cgColor, UIColor(r: 17, g: 28, b: 187).cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
 
     }
     

@@ -23,10 +23,10 @@ class LoginController: UIViewController {
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         //button.backgroundColor = UIColor(r: 244, g: 241, b: 255)
-        button.backgroundColor = UIColor(r: 238, g: 225, b: 255)
+        button.backgroundColor = UIColor(r: 108, g: 198, b: 68)
         button.setTitle("Login", for: .normal)
        // button.setTitleColor(UIColor(r: 164, g: 118, b: 255), for: .normal)
-        button.setTitleColor(UIColor(r: 176, g: 129, b: 255), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
@@ -47,7 +47,8 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         //backgroundColor = UIColor(r: 238, g: 225, b: 255)
         button.setTitle("Reset password", for: .normal)
-        button.setTitleColor(UIColor(r: 176, g: 129, b: 255), for: .normal)
+        
+        button.setTitleColor(UIColor(r: 108, g: 198, b: 68), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleReset), for: .touchUpInside)
         button.tintColor = .clear
@@ -92,7 +93,7 @@ class LoginController: UIViewController {
     
     // *** profile image view
    lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "health2"))
+        let imageView = UIImageView(image: UIImage(named: "health8"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         
@@ -107,7 +108,13 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         //view.backgroundColor = UIColor(r: 203, g: 195, b: 227)
-        view.backgroundColor = UIColor.white
+        //view.backgroundColor = UIColor(r: 4, g: 19, b: 59)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        //[UIColor(r: 17, g: 28, b: 60).cgColor, UIColor(r: 17, g: 28, b: 500).cgColor] // 0 187
+        gradientLayer.colors = [UIColor(r: 17, g: 28, b: 187).cgColor, UIColor(r: 255, g: 153, b: 255).cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         view.addSubview(inputsContainerView)
         view.addSubview(loginButton)

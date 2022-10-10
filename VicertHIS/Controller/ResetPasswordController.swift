@@ -86,11 +86,13 @@ class ResetPasswordController: UIViewController {
     //reset button
     lazy var resetConfirmButton: UIButton = {
         let button = UIButton(type: .system)
-        //button.backgroundColor = UIColor(r: 244, g: 241, b: 255)
-        button.backgroundColor = UIColor(r: 238, g: 225, b: 255)
+       
+        //lepa ljubicasta boja
+        //button.backgroundColor = UIColor(r: 238, g: 225, b: 255)
+        button.backgroundColor = UIColor(r: 108, g: 198, b: 68)
         button.setTitle("Reset", for: .normal)
        // button.setTitleColor(UIColor(r: 164, g: 118, b: 255), for: .normal)
-        button.setTitleColor(UIColor(r: 176, g: 129, b: 255), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
@@ -106,10 +108,17 @@ class ResetPasswordController: UIViewController {
         super.viewDidLoad()
         
             // view.backgroundColor = UIColor(r: 203, g: 195, b: 227)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [UIColor(r: 17, g: 28, b: 187).cgColor, UIColor(r: 255, g: 153, b: 255).cgColor]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        
         view.backgroundColor =  UIColor.white
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         view.addSubview(inputsContainerView)
         view.addSubview(resetConfirmButton)

@@ -13,8 +13,10 @@ class CustomTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let homeNavControler = UINavigationController(rootViewController: HomeController())
-        homeNavControler.tabBarItem.title = "Home"
         homeNavControler.title = "Home"
+        
+        
+        
         homeNavControler.tabBarItem.image = UIImage(named: "home")
         
         
@@ -34,7 +36,7 @@ class CustomTabBarController: UITabBarController {
         findCareController.tabBarItem.image = UIImage(named: "doctor2")
         
         
-        viewControllers = [homeNavControler, appointmentsNavControler, profileNavControler, findCareController]
+        viewControllers = [homeNavControler, findCareController, appointmentsNavControler, profileNavControler]
         
         tabBar.isTranslucent = false
         
