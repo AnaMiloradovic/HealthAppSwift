@@ -105,22 +105,25 @@ class FindCareController: UITableViewController {
         return CGFloat(200)
     }
 
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       // let doctor = doctors[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
+        let doctor = doctors[indexPath.row]
+        
+        let dc = DoctorProfileViewController(doctor: [doctor])
+        navigationController?.pushViewController(dc, animated: true)
        // showDoctorsInfo()
         
-       
+       /*
         let dc = DoctorProfileViewController()
         let navController = UINavigationController(rootViewController: dc)
        // navigationController?.pushViewController(navController, animated: true)
-        present(navController, animated: true, completion: nil)
+        present(navController, animated: true, completion: nil) */
         
+    }
+    
+    @objc func handleCancel(){
+        dismiss(animated: true, completion: nil)
     }
     
    /*  func showDoctorsInfo() {
@@ -130,6 +133,8 @@ class FindCareController: UITableViewController {
         print(123)
         
     }*/
+    
+    
 
 
 
