@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import FSCalendar
+
+
 
 //UITableViewDelegate, UITableViewDataSource
-class DoctorProfileViewController: UIViewController {
+class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
     
+  
+    private weak var calendar: FSCalendar!
     
     private lazy var stackView: UIStackView = {
         
@@ -71,10 +76,13 @@ class DoctorProfileViewController: UIViewController {
         let appointmentContent = UILabel()
         appointmentContent.text = content
         appointmentContent.font = .systemFont(ofSize: 14, weight: .light)
+        appointmentContent.translatesAutoresizingMaskIntoConstraints = false
+       
         let stackView = UIStackView(arrangedSubviews: [appointmentContent])
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 10.0
+        
         return stackView
     }
     
@@ -108,8 +116,55 @@ class DoctorProfileViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.leftBarButtonItem?.tintColor = .black
         
-       
+        //calendar
+        let calendar = FSCalendar(frame: CGRect(x: 0.0, y: 40.0, width: 300, height: 400.0))
+        calendar.scrollDirection = .vertical
+        calendar.scope = .month
+        calendar.translatesAutoresizingMaskIntoConstraints = false
+        
+        //when we work with cells we need to register it
+        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "CELL")
+        self.view.addSubview(calendar)
+        
+        calendar.delegate = self
+        calendar.dataSource = self
+        
+        //select multiple days
+        calendar.allowsMultipleSelection = true
+        
+        //option1: automaticly set constraint for calendar
+       // calendar.frame = view.frame
+        
+        //option2: manualy set constraints for calendar
+        //setupCalendar()
+        calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 420).isActive = true
+        //calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        calendar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44).isActive = true
+        calendar.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        calendar.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        // *** FONT&COLOR of calendar
+        calendar.appearance.titleFont = UIFont.systemFont(ofSize: 17)
+        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 18)
+        calendar.appearance.weekdayFont = UIFont.boldSystemFont(ofSize: 16)
+        
+        calendar.appearance.todayColor = .systemGreen
+        calendar.appearance.titleTodayColor = .white
+        calendar.appearance.titleDefaultColor = .systemBlue
+        calendar.appearance.weekdayTextColor = .systemRed
+        calendar.appearance.headerTitleColor = .systemRed
     }
+    
+   
+   /* func setupCalendar(){
+        //setting up constraints
+        calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        calendar.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
+        calendar.heightAnchor.constraint(equalToConstant: 550).isActive = true
+    }*/
+       
   
     
     
