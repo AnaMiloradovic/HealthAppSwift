@@ -110,33 +110,14 @@ class FindCareController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let doctor = doctors[indexPath.row]
         
-        let dc = DoctorProfileViewController(doctor: [doctor])
+        let dc = DoctorProfileViewController(doctor: doctor)
         navigationController?.pushViewController(dc, animated: true)
-       // showDoctorsInfo()
-        
-       /*
-        let dc = DoctorProfileViewController()
-        let navController = UINavigationController(rootViewController: dc)
-       // navigationController?.pushViewController(navController, animated: true)
-        present(navController, animated: true, completion: nil) */
-        
+    
     }
     
     @objc func handleCancel(){
         dismiss(animated: true, completion: nil)
     }
-    
-   /*  func showDoctorsInfo() {
-         let navController  =  DoctorProfileViewController(doctors: <#[Doctor]#>)
-        navController.doctors = doctors
-        navigationController?.pushViewController(navController, animated: true)
-        print(123)
-        
-    }*/
-    
-    
-
-
 
 }
 
