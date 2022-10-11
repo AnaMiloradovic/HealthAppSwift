@@ -25,6 +25,7 @@
 		9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */; };
 		9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14128E328C10045B4B4 /* ApiCalls.swift */; };
 		9782A14428E3481E0045B4B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14328E3481E0045B4B4 /* User.swift */; };
+		97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B2128F5B186003D0E0F /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = VicertHIS;
+			packageProductDependencies = (
+				97FD8B2128F5B186003D0E0F /* FSCalendar */,
+			);
 			productName = VicertHIS;
 			productReference = 9782A12028E1BC390045B4B4 /* VicertHIS.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +176,9 @@
 				Base,
 			);
 			mainGroup = 9782A11728E1BC390045B4B4;
+			packageReferences = (
+				97FD8B2028F5B186003D0E0F /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 9782A12128E1BC390045B4B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,6 +430,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97FD8B2028F5B186003D0E0F /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97FD8B2128F5B186003D0E0F /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97FD8B2028F5B186003D0E0F /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9782A11828E1BC390045B4B4 /* Project object */;
 }
