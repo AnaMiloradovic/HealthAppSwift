@@ -10,8 +10,7 @@ import FSCalendar
 
 
 
-//UITableViewDelegate, UITableViewDataSource
-class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
+class DoctorProfileViewController: UIViewController {
     
   
     private weak var calendar: FSCalendar!
@@ -31,7 +30,6 @@ class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCal
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        //stackView.distribution = .fill
         stackView.contentMode = .scaleAspectFit
         stackView.setCustomSpacing(35.0, after: hStackView5)
         stackView.setCustomSpacing(12, after: appointmentStackView)
@@ -87,7 +85,6 @@ class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCal
     }
     
     
-   
     //sta vracamo
     let doctor: Doctor
     
@@ -111,10 +108,25 @@ class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCal
         navigationItem.title = "Info"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.titleView?.tintColor = UIColor(r: 68, g: 44, b: 46)
-        view.backgroundColor = UIColor(r: 255, g: 226, b: 187)
+        view.backgroundColor = UIColor(r: 255, g: 255, b: 240)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.leftBarButtonItem?.tintColor = .black
+        
+        setupCalendar()
+        
+    }
+    
+   
+    @objc func handleCancel(){
+        dismiss(animated: true, completion: nil)
+    }
+
+}
+
+extension DoctorProfileViewController : FSCalendarDataSource, FSCalendarDelegate{
+    
+    func setupCalendar(){
         
         //calendar
         let calendar = FSCalendar(frame: CGRect(x: 0.0, y: 40.0, width: 300, height: 400.0))
@@ -124,7 +136,7 @@ class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCal
         
         //when we work with cells we need to register it
         calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "CELL")
-        self.view.addSubview(calendar)
+        view.addSubview(calendar)
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -136,48 +148,27 @@ class DoctorProfileViewController: UIViewController, FSCalendarDataSource, FSCal
        // calendar.frame = view.frame
         
         //option2: manualy set constraints for calendar
-        //setupCalendar()
-        calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 420).isActive = true
-        //calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 430).isActive = true
         calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         calendar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44).isActive = true
         calendar.widthAnchor.constraint(equalToConstant: 300).isActive = true
         calendar.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    
         
         // *** FONT&COLOR of calendar
-        calendar.appearance.titleFont = UIFont.systemFont(ofSize: 17)
-        calendar.appearance.headerTitleFont = UIFont.boldSystemFont(ofSize: 18)
-        calendar.appearance.weekdayFont = UIFont.boldSystemFont(ofSize: 16)
+        calendar.appearance.titleFont = UIFont.systemFont(ofSize: 17, weight: .light)
+        calendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+        calendar.appearance.weekdayFont = UIFont.systemFont(ofSize: 16, weight: .medium)
+        
         
         calendar.appearance.todayColor = .systemGreen
         calendar.appearance.titleTodayColor = .white
         calendar.appearance.titleDefaultColor = .systemBlue
-        calendar.appearance.weekdayTextColor = .systemRed
-        calendar.appearance.headerTitleColor = .systemRed
+        calendar.appearance.weekdayTextColor = .systemOrange
+        calendar.appearance.headerTitleColor = .systemOrange
+        
     }
-    
-   
-   /* func setupCalendar(){
-        //setting up constraints
-        calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        calendar.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
-        calendar.heightAnchor.constraint(equalToConstant: 550).isActive = true
-    }*/
-       
-  
-    
-    
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
-    }
-    
-   
-    
-    
-    
-    
-    
+
 }
 
 
