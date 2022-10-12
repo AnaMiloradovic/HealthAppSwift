@@ -17,17 +17,14 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
         //getPosts()
-        //postResetPassword()
-        //postLogin()
-        postDoctorsAppointment()
-        
-        //postGetAllByUser()
-        //getAll()
-        //getWithId(id: 1)
-        //deleteAppointmentWithId(id: 1)
-        
-        //putUpdateAppointment()
-       
+        APIManager.shared.postResetPassword()
+        APIManager.shared.postLogin()
+        APIManager.shared.postDoctorsAppointment()
+        APIManager.shared.postGetAllByUser()
+        APIManager.shared.getAll()
+        APIManager.shared.getWithId(id: 1)
+        APIManager.shared.deleteAppointmentWithId(id: 1)
+        APIManager.shared.putUpdateAppointment()
     
     }
     
@@ -35,12 +32,6 @@ class ViewController: UITableViewController {
     @objc func handleLogout(){
         present(LoginController(), animated: true, completion: nil)
     }
-    
-    func getData(){
-        
-    }
-   
-    
 }
 
 
