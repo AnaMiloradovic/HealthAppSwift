@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import SnapKit
+
+
 
 class LoginController: UIViewController {
     
@@ -127,11 +130,19 @@ class LoginController: UIViewController {
         setupResetButton()
         
       
+        
+      
     }
     
     func setupInputsContainerView(){
         
         //constraints for inputsContainer -> we'll have there email & password
+        //SNAPKIT AUTO LAYOUT
+      /*  inputsContainerView.snp.makeConstraints{ (make) in
+            make.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(-24)
+        } */
+        
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true

@@ -8,7 +8,8 @@
 import UIKit
 
 
-class APIManager{
+//da li treba da bude NSObject ili ne ?
+class APIManager: NSObject{
     
     static let shared = APIManager()
     
@@ -233,6 +234,7 @@ class APIManager{
                     return
                 }
                 
+        
                 let task = session.dataTask(with: url) { data, response, error in
                     
                    // print("request is: \(data as! NSData)")
@@ -446,16 +448,67 @@ class APIManager{
                 }
                 task.resume()
     }
+    
+    
+  
+    func getAllDoctors(completion: @escaping (Result<[GetAllDoctors], Error>) -> ()) {
+        
+        //1.create a URLRequest for an API endpoint
+        guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/getall") else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+        }
+        
+        //create sessionDataTask
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let error = error {
+                 print("Failed to fatch doctors", error)
+                 return
+             }
+             
+             guard let data = data else { return }
+             
+            
+             do{
+                 let object = try JSONDecoder().decode([GetAllDoctors].self, from: data)
+                 completion(.success(object))
+                  
+             }  catch {
+                 completion(.failure(error))
+               }
+        }
+        task.resume()
+    }
 }
-
- 
-
-
-
-
-
-
-
+            
+           
+          /*  do{
+                let object = try? JSONSerialization.jsonObject(with: data, options: [])
+                 print("result: \(object)")
+                print("response: \(response)")
+            }
+            catch let error as NSError {
+                print("failure to decode user from JSON")
+                print(error)
+            }
+              
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Status code: \(httpResponse.statusCode)")
+                print("\(httpResponse.allHeaderFields)")
+                print(httpResponse.debugDescription)
+            }
+            
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            } */
+    
 
 
 /*

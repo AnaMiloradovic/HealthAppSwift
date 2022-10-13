@@ -73,14 +73,14 @@ struct AllUsers: Codable {
 struct ResponseGetAll: Codable {
     let errors: [String?]
     let token: String?
-    let result: [Result]?
+    let result: [AppointmentsResult]?
     let roles: [String?]
 }
 
 
 
 // MARK: - Result
-struct Result: Codable {
+struct AppointmentsResult: Codable {
     let id, note: String?
     let date, startTime: String?
     let endTime: String?

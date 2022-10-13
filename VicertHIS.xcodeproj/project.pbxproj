@@ -26,6 +26,7 @@
 		9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14128E328C10045B4B4 /* ApiCalls.swift */; };
 		9782A14428E3481E0045B4B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14328E3481E0045B4B4 /* User.swift */; };
 		97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B2128F5B186003D0E0F /* FSCalendar */; };
+		97FD8B3628F6F180003D0E0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B3528F6F180003D0E0F /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,6 @@
 		97632D3D28EC2FA600FC51C6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		97632D3F28EC2FD500FC51C6 /* AppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsController.swift; sourceTree = "<group>"; };
 		97632D4128EC2FE700FC51C6 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
-		9782A12028E1BC390045B4B4 /* VicertHIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VicertHIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9782A12328E1BC390045B4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9782A12528E1BC390045B4B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9782A12728E1BC390045B4B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +49,7 @@
 		9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		9782A14128E328C10045B4B4 /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
 		9782A14328E3481E0045B4B4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97FD8B3328F6F092003D0E0F /* VicertHIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VicertHIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */,
+				97FD8B3628F6F180003D0E0F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,16 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				9782A12228E1BC390045B4B4 /* VicertHIS */,
-				9782A12128E1BC390045B4B4 /* Products */,
+				97FD8B3328F6F092003D0E0F /* VicertHIS.app */,
 			);
-			sourceTree = "<group>";
-		};
-		9782A12128E1BC390045B4B4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9782A12028E1BC390045B4B4 /* VicertHIS.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9782A12228E1BC390045B4B4 /* VicertHIS */ = {
@@ -93,10 +87,10 @@
 				971C9BAA28F02F150030E1A4 /* View */,
 				9782A14028E307CA0045B4B4 /* Models */,
 				9782A13728E1C0DB0045B4B4 /* Controller */,
+				9782A12E28E1BC3A0045B4B4 /* LaunchScreen.storyboard */,
 				9782A12328E1BC390045B4B4 /* AppDelegate.swift */,
 				9782A12528E1BC390045B4B4 /* SceneDelegate.swift */,
 				9782A12C28E1BC3A0045B4B4 /* Assets.xcassets */,
-				9782A12E28E1BC3A0045B4B4 /* LaunchScreen.storyboard */,
 				9782A13128E1BC3A0045B4B4 /* Info.plist */,
 			);
 			path = VicertHIS;
@@ -147,9 +141,10 @@
 			name = VicertHIS;
 			packageProductDependencies = (
 				97FD8B2128F5B186003D0E0F /* FSCalendar */,
+				97FD8B3528F6F180003D0E0F /* SnapKit */,
 			);
 			productName = VicertHIS;
-			productReference = 9782A12028E1BC390045B4B4 /* VicertHIS.app */;
+			productReference = 97FD8B3328F6F092003D0E0F /* VicertHIS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -178,8 +173,9 @@
 			mainGroup = 9782A11728E1BC390045B4B4;
 			packageReferences = (
 				97FD8B2028F5B186003D0E0F /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				97FD8B3428F6F180003D0E0F /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
-			productRefGroup = 9782A12128E1BC390045B4B4 /* Products */;
+			productRefGroup = 9782A11728E1BC390045B4B4;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -440,6 +436,14 @@
 				kind = branch;
 			};
 		};
+		97FD8B3428F6F180003D0E0F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -447,6 +451,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 97FD8B2028F5B186003D0E0F /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		97FD8B3528F6F180003D0E0F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97FD8B3428F6F180003D0E0F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

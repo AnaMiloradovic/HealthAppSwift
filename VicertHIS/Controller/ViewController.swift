@@ -9,22 +9,61 @@ import UIKit
 
 
 class ViewController: UITableViewController {
+    
+    var doctors = [GetAllDoctors]()
+    let cellId = "cellId"
+    
+    fileprivate func getAllDoctors(){
+        APIManager.shared.getAllDoctors{ (res) in
+            switch res {
+            case .failure(let error):
+                print("Failed to fetch doctors", error)
+            case .success(let doctors):
+                print("Success")
+                print(doctors)
+               // self.doctors = doctors
+                //self.tableView.reloadData()
+            }
+            
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return doctors.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.backgroundColor = .red
+        
+        let doctor = doctors[indexPath.row]
+        
+        
+        return cell
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+     
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+       
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
-        //getPosts()
-        APIManager.shared.postResetPassword()
-        APIManager.shared.postLogin()
-        APIManager.shared.postDoctorsAppointment()
-        APIManager.shared.postGetAllByUser()
-        APIManager.shared.getAll()
-        APIManager.shared.getWithId(id: 1)
-        APIManager.shared.deleteAppointmentWithId(id: 1)
-        APIManager.shared.putUpdateAppointment()
+        
+           getAllDoctors()
+        
+        //APIManager.shared.postResetPassword()
+       // APIManager.shared.postLogin()
+       // APIManager.shared.postDoctorsAppointment()
+       // APIManager.shared.postGetAllByUser()
+        //APIManager.shared.getAll()
+       // APIManager.shared.getWithId(id: 1)
+      //  APIManager.shared.deleteAppointmentWithId(id: 1)
+       // APIManager.shared.putUpdateAppointment()
+        //APIManager.shared.getAllDoctors()
     
     }
     
