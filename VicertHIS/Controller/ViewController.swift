@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var doctors = [GetAllDoctors]()
+    var results = [DoctorsResults]()
     let cellId = "cellId"
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     
@@ -19,37 +19,19 @@ class ViewController: UITableViewController {
             switch res {
             case .failure(let error):
                 print("Failed to fetch doctors", error)
-            case .success(let doctors):
+            case .success(let results):
                 print("Success")
-                print(doctors)
-               // self.doctors = doctors
-                //self.tableView.reloadData()
+               // print(doctors)
+                self.results = results
+                self.tableView.reloadData()
             }
             
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return doctors.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.backgroundColor = .red
-        
-        let doctor = doctors[indexPath.row]
-        
-        
-        return cell
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
-        
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-       
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
@@ -57,8 +39,8 @@ class ViewController: UITableViewController {
        
         APIManager.shared.postLogin()
        // APIManager.shared.getAllAppointments(token: savedToken as! NSObject)
-       //getAllDoctors()
-        APIManager.shared.getWithId(id: 1788, token: savedToken as! NSObject)
+       getAllDoctors()
+        //APIManager.shared.getWithId(id: 1788, token: savedToken as! NSObject)
        
         //APIManager.shared.postResetPassword()
         

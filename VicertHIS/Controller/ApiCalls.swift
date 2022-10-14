@@ -302,7 +302,7 @@ class APIManager: NSObject{
     
     
     
-    func getAllDoctors(token: NSObject, completion: @escaping (Result<[GetAllDoctors], Error>) -> ()) {
+    func getAllDoctors(token: NSObject, completion: @escaping (Result<[DoctorsResults], Error>) -> ()) {
           
           //1.create a URLRequest for an API endpoint
           guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/getall") else {

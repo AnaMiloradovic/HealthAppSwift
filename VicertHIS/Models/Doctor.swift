@@ -21,7 +21,7 @@ struct Doctor {
 struct GetAllDoctors: Codable {
     let errors: [String]? //JSONAny
     let token: String?   //JSONNull
-    let result: [DoctorsResults]?
+    let result: [DoctorsResults]
     let roles: [String]?
 }
 
@@ -29,8 +29,10 @@ struct GetAllDoctors: Codable {
 struct DoctorsResults: Codable {
     let specialization: String?
     let hoursPerWeek: Int?
-    let id, firstName, lastName, email: String?
-    let address, phone, dateOfBirth: String?
+    let id, lastName: String?
+    let firstName,email : String
+    let address, phone: String
+    let dateOfBirth: String
 }
 
 

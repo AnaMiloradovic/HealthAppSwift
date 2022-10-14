@@ -11,14 +11,33 @@ class FindCareController: UITableViewController {
     
     let cellId = "cellId"
     
-    let doctors: [Doctor] = {
+    
+    var results = [DoctorsResults]()
+   // var doctors = [GetAllDoctors]()
+    
+    let savedToken = UserDefaults.standard.object(forKey: "savedToken")
+    
+    fileprivate func getAllDoctors(){
+        APIManager.shared.getAllDoctors(token: savedToken as! NSObject){ (res) in
+            switch res {
+            case .failure(let error):
+                print("Failed to fetch doctors", error)
+            case .success(let results):
+                print("Success")
+                self.results = results
+                self.tableView.reloadData()
+            }
+            
+        }
+    }
+ /*   let doctors: [Doctor] = {
         
         let doctor1 = Doctor(name: "Kaiden Sidney", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "May 17, 1979", phoneNumber: "123-123-1234", email: "kaiden.sidney@vhis.com")
         let doctor2 = Doctor(name: "Cornell Ellison", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jan 29, 1974", phoneNumber: "123-123-1234", email: "cornell.ellison@vhis.com")
         let doctor3 = Doctor(name: "Douglas Loman", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jun 11, 1978", phoneNumber: "123-123-1234", email: "douglas.loman@vhis.com")
         let doctor4 = Doctor(name: "Virginia Apgar", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jan 01, 1970", phoneNumber: "123-1234-123", email: "virginia.apgar@vhis.com")
         return [doctor1, doctor2, doctor3, doctor4]
-    }()
+    }()*/
 
 
     override func viewDidLoad() {
@@ -36,10 +55,11 @@ class FindCareController: UITableViewController {
         view.backgroundColor = UIColor(r: 255, g: 241, b: 255)
         
         tableView.register(DoctorsCell.self, forCellReuseIdentifier: cellId)
-        
+     
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        getAllDoctors()   
     }
     
     
@@ -71,34 +91,41 @@ class FindCareController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return doctors.count
+        return results.count
     }
     
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! DoctorsCell
        cell.backgroundColor = .clear
        
-       if let name = doctors[indexPath.item].name{
-           cell.doctorsName.text = name
-       }
+       let result = results[indexPath.row]
+       cell.doctorsName.text = result.firstName
+    
+       cell.adressLabel.text = "lalalala"
+         
+       /*
+        if let name = doctors[indexPath.item].name{
+            cell.doctorsName.text = name
+        }
+        
+        if let adress = doctors[indexPath.item].adress {
+              cell.adressLabel.text = adress
+         }
+         
+         if let birth = doctors[indexPath.item].dateOfBirth{
+             cell.birthLabel.text = birth
+         }
+         
+         if let phone = doctors[indexPath.item].phoneNumber{
+             cell.phoneLabel.text = phone
+         }
+         
+         if let email = doctors[indexPath.item].email{
+             cell.emailLabel.text = email
+         } */
+         
+       return cell
        
-       if let adress = doctors[indexPath.item].adress {
-           cell.adressLabel.text = adress
-       }
-       
-       if let birth = doctors[indexPath.item].dateOfBirth{
-           cell.birthLabel.text = birth
-       }
-       
-       if let phone = doctors[indexPath.item].phoneNumber{
-           cell.phoneLabel.text = phone
-       }
-       
-       if let email = doctors[indexPath.item].email{
-           cell.emailLabel.text = email
-       }
-       
-        return cell
        }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,10 +135,10 @@ class FindCareController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        let doctor = doctors[indexPath.row]
+       // let doctor = doctors[indexPath.row]
         
-        let dc = DoctorProfileViewController(doctor: doctor)
-        navigationController?.pushViewController(dc, animated: true)
+       // let dc = DoctorProfileViewController(doctor: doctor)
+       // navigationController?.pushViewController(dc, animated: true)
     
     }
     
