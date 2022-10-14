@@ -53,10 +53,16 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
         
-           getAllDoctors()
+       // getAllDoctors()
+        APIManager.shared.postLogin()
+       // APIManager.shared.getAll()
+        let savedToken = UserDefaults.standard.object(forKey: "savedToken")
+        print("Token is: \(savedToken)")
+        
+        
         
         //APIManager.shared.postResetPassword()
-       // APIManager.shared.postLogin()
+        
        // APIManager.shared.postDoctorsAppointment()
        // APIManager.shared.postGetAllByUser()
         //APIManager.shared.getAll()

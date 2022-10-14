@@ -8,10 +8,12 @@
 import UIKit
 
 
+
 //da li treba da bude NSObject ili ne ?
 class APIManager: NSObject{
     
     static let shared = APIManager()
+     var userDefaults: String?
     
     func postResetPassword() {
        
@@ -30,7 +32,8 @@ class APIManager: NSObject{
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? newJSONEncoder().encode(newPassword)
+       
+        request.httpBody = try? JSONEncoder().encode(newPassword)
       
         
         URLSession.shared.dataTask(with: request) {
@@ -47,7 +50,7 @@ class APIManager: NSObject{
                
                 do{
                    
-                    let object = try newJSONDecoder().decode(ResetPasswordResponse.self, from: data!)
+                    let object = try JSONDecoder().decode(ResetPasswordResponse.self, from: data!)
                     print("Result is: \(object)")
                     print("Response is: \(String(describing: response))")
                     print("****************************")
@@ -71,16 +74,16 @@ class APIManager: NSObject{
         guard let url = URL(string: "http://192.168.100.38:81/api/Identity/login") else {
             return
         }
-        let newLogin = User(email: "mark@example.com", password: "Mark.123")
+        let newLogin = User(email: "jane@vhis.com", password: "P@ssw0rd")
         
         //make request object
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? newJSONEncoder().encode(newLogin)
+        request.httpBody = try? JSONEncoder().encode(newLogin)
       
-        URLSession.shared.dataTask(with: request) {
+        URLSession.shared.dataTask(with: request) { [self]
             data, response, error in
             
             if let httpResponse = response as? HTTPURLResponse {
@@ -95,8 +98,10 @@ class APIManager: NSObject{
                 // data -> swift object
                 do{
                    
-                    let welcome = try newJSONDecoder().decode(LoginResponse.self, from: data!)
+                    let welcome = try JSONDecoder().decode(LoginResponse.self, from: data!)
                     print("Result is: \(welcome)")
+                    UserDefaults.standard.set(welcome.token, forKey: "savedToken")
+                   
                     print("Response is: \(String(describing: response))")
                     print("****************************")
                    // let res: Result? = welcome.result
@@ -136,7 +141,7 @@ class APIManager: NSObject{
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? newJSONEncoder().encode(createAppointment)
+        request.httpBody = try? JSONEncoder().encode(createAppointment)
       
         URLSession.shared.dataTask(with: request) {
             data, response, error in
@@ -161,7 +166,7 @@ class APIManager: NSObject{
             
             
             do{
-                    let object = try newJSONDecoder().decode(ResponseDoctorsAppointments.self, from: data!)
+                    let object = try JSONDecoder().decode(ResponseDoctorsAppointments.self, from: data!)
                     print("Result is: \(object)")
                     print("Response is: \(response)")
                     print("****************************")
@@ -190,7 +195,7 @@ class APIManager: NSObject{
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = try? newJSONEncoder().encode(getAll)
+        request.httpBody = try? JSONEncoder().encode(getAll)
       
         
         URLSession.shared.dataTask(with: request) {
@@ -209,7 +214,7 @@ class APIManager: NSObject{
                 // data -> swift object
                 do{
                    
-                    let object = try newJSONDecoder().decode(ResponseGetAll.self, from: data!)
+                    let object = try JSONDecoder().decode(ResponseGetAll.self, from: data!)
                     print("Result is: \(object)")
                     print("Response is: \(String(describing: response))")
                     print("****************************")
@@ -233,9 +238,16 @@ class APIManager: NSObject{
                 guard let url = URL(string: "http://192.168.100.38:81/api/Appointment/getall") else {
                     return
                 }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        //request.setValue("Bearer \(token)")
+        
                 
         
-                let task = session.dataTask(with: url) { data, response, error in
+                let task = session.dataTask(with: request) { data, response, error in
                     
                    // print("request is: \(data as! NSData)")
                     
@@ -255,14 +267,9 @@ class APIManager: NSObject{
                         return
                     }
                     
-                    guard let mime = response.mimeType, mime == "application/json" else {
-                        print("Wrong MIME type!")
-                        return
-                    }
-                    
-                    
+        
                     do{
-                         let object = try newJSONDecoder().decode(ResponseGetAll.self, from: data!)
+                         let object = try JSONDecoder().decode(ResponseGetAll.self, from: data!)
                           print("Result is: \(object)")
                           print("Response is: \(response)")
                          
@@ -304,14 +311,9 @@ class APIManager: NSObject{
                         return
                     }
                     
-                    guard let mime = response.mimeType, mime == "application/json" else {
-                        print("Wrong MIME type!")
-                        return
-                    }
-                    
                     
                     do{
-                         let object = try newJSONDecoder().decode(ResponseGetAll.self, from: data!)
+                         let object = try JSONDecoder().decode(ResponseGetAll.self, from: data!)
                           print("Result is: \(object)")
                           print("Response is: \(response)")
                          
@@ -458,9 +460,11 @@ class APIManager: NSObject{
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lQHZoaXMuY29tIiwianRpIjoiZWZjMjY5YWEtMGVmOC00OWRhLWExZWItODQ2Y2NjMGY1NmQxIiwiZW1haWwiOiJqYW5lQHZoaXMuY29tIiwiaWQiOiI0MWY3MWEyMy0wZjgxLTRkNDItOTllZC1iY2I0N2ExODQ5MjIiLCJyb2xlcyI6IlRFQ0hOSUNJQU4iLCJuYmYiOjE2NjU2Njg4NDAsImV4cCI6MTY2NTY3MjQ0MCwiaWF0IjoxNjY1NjY4ODQwfQ.YkcoXl-0WdFToV8RQuwFbizcAp4UNdiTkSLm1Yg7x-Q", forHTTPHeaderField: "Authorization")
         
         //create sessionDataTask
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -473,13 +477,15 @@ class APIManager: NSObject{
              guard let data = data else { return }
              
             
-             do{
-                 let object = try JSONDecoder().decode([GetAllDoctors].self, from: data)
-                 completion(.success(object))
-                  
-             }  catch {
-                 completion(.failure(error))
-               }
+            do{
+                  let object = try? JSONSerialization.jsonObject(with: data, options: [])
+                   print("result: \(object)")
+                  print("response: \(response)")
+              }
+              catch let error as NSError {
+                  print("failure to decode user from JSON")
+                  print(error)
+              }
         }
         task.resume()
     }

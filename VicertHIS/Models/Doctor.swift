@@ -19,8 +19,8 @@ struct Doctor {
 
 // MARK: - GetAllDoctors - response
 struct GetAllDoctors: Codable {
-    let errors: [String?]
-    let token: String?
+    let errors: [String]? //JSONAny
+    let token: String?   //JSONNull
     let result: [DoctorsResults]?
     let roles: [String]?
 }
