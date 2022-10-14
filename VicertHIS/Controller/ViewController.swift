@@ -12,9 +12,10 @@ class ViewController: UITableViewController {
     
     var doctors = [GetAllDoctors]()
     let cellId = "cellId"
+    let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     
     fileprivate func getAllDoctors(){
-        APIManager.shared.getAllDoctors{ (res) in
+        APIManager.shared.getAllDoctors(token: savedToken as! NSObject){ (res) in
             switch res {
             case .failure(let error):
                 print("Failed to fetch doctors", error)
@@ -53,20 +54,18 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
         
-       // getAllDoctors()
+       
         APIManager.shared.postLogin()
-       // APIManager.shared.getAll()
-        let savedToken = UserDefaults.standard.object(forKey: "savedToken")
-        print("Token is: \(savedToken)")
-        
-        
-        
+       // APIManager.shared.getAllAppointments(token: savedToken as! NSObject)
+       //getAllDoctors()
+        APIManager.shared.getWithId(id: 1788, token: savedToken as! NSObject)
+       
         //APIManager.shared.postResetPassword()
         
        // APIManager.shared.postDoctorsAppointment()
        // APIManager.shared.postGetAllByUser()
         //APIManager.shared.getAll()
-       // APIManager.shared.getWithId(id: 1)
+        
       //  APIManager.shared.deleteAppointmentWithId(id: 1)
        // APIManager.shared.putUpdateAppointment()
         //APIManager.shared.getAllDoctors()

@@ -83,8 +83,7 @@ class APIManager: NSObject{
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = try? JSONEncoder().encode(newLogin)
       
-        URLSession.shared.dataTask(with: request) { [self]
-            data, response, error in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let httpResponse = response as? HTTPURLResponse {
                 print("error \(httpResponse.statusCode)")
@@ -121,7 +120,7 @@ class APIManager: NSObject{
     
     // POST request
     // url: "http://192.168.100.38:81/api/Appointment/createfordoctor"
-    func postDoctorsAppointment() {
+ /*   func postDoctorsAppointment() {
        
         //make url object
         guard let url = URL(string: "http://192.168.100.38:81/api/Appointment/createfordoctor") else {
@@ -166,7 +165,7 @@ class APIManager: NSObject{
             
             
             do{
-                    let object = try JSONDecoder().decode(ResponseDoctorsAppointments.self, from: data!)
+                    let object = try JSONDecoder().decode(ResponseGetAllAppointments.self, from: data!)
                     print("Result is: \(object)")
                     print("Response is: \(response)")
                     print("****************************")
@@ -178,7 +177,7 @@ class APIManager: NSObject{
              
         }.resume()
     }
-    
+     */
     // POST request
     // "http://192.168.100.38:81/api/Identity/login"
     // url: "http://192.168.100.38:81/api/Appointment/createfordoctor"
@@ -232,100 +231,112 @@ class APIManager: NSObject{
         }.resume()
     }
     
-    func getAll(){
+    func getAllAppointments(token: NSObject){
         
                 let session = URLSession.shared
                 guard let url = URL(string: "http://192.168.100.38:81/api/Appointment/getall") else {
                     return
                 }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        //request.setValue("Bearer \(token)")
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-                
-        
-                let task = session.dataTask(with: request) { data, response, error in
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     
-                   // print("request is: \(data as! NSData)")
-                    
-                    if let httpResponse = response as? HTTPURLResponse {
-                        print("Status code: \(httpResponse.statusCode)")
-                        print("\(httpResponse.allHeaderFields)")
-                        print(httpResponse.debugDescription)
-                    }
-                    
-                    if error != nil || data == nil {
-                        print("Client error!" )
-                        return
-                    }
-                    
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        print("Server error!")
-                        return
-                    }
-                    
-        
+                    if let error = error {
+                         print("Failed to fatch appointments", error)
+                         return
+                     }
+                     
+                     guard let data = data else { return }
+                     
                     do{
-                         let object = try JSONDecoder().decode(ResponseGetAll.self, from: data!)
-                          print("Result is: \(object)")
-                          print("Response is: \(response)")
-                         
+                        let object = try JSONDecoder().decode(ResponseGetAllAppointments.self, from: data)
+                          print("Response body: \(object)")
+                          print("****************************")
                          
                       }  catch let error as NSError {
                           print("failure to decode user from JSON")
                           print(error)
-                          
                       }
                 }
                 task.resume()
             }
     
     
-    func getWithId(id: Int){
+    func getWithId(id: Int, token: NSObject){
         
                 let session = URLSession.shared
                 guard let url = URL(string: "http://192.168.100.38:81/api/Appointment/get/" + String(id)) else {
                     return
                 }
+        
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                 
-                let task = session.dataTask(with: url) { data, response, error in
-                    
-                    print("request is: \(data! as NSData)")
-                    
-                    if let httpResponse = response as? HTTPURLResponse {
-                        print("Status code: \(httpResponse.statusCode)")
-                        print("\(httpResponse.allHeaderFields)")
-                        print(httpResponse.debugDescription)
-                    }
-                    
-                    if error != nil || data == nil {
-                        print("Client error!" )
-                        return
-                    }
-                    
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        print("Server error!")
-                        return
-                    }
-                    
-                    
+                let task = session.dataTask(with: request) { data, response, error in
+                
+                    if let error = error {
+                         print("Failed to fatch appointments", error)
+                         return
+                     }
+                     
+                     guard let data = data else { return }
+                     
                     do{
-                         let object = try JSONDecoder().decode(ResponseGetAll.self, from: data!)
-                          print("Result is: \(object)")
-                          print("Response is: \(response)")
-                         
+                        let object = try JSONDecoder().decode(GetAppointmentsWithID.self, from: data)
+                          print("Response body: \(object)")
+                          print("****************************")
                          
                       }  catch let error as NSError {
                           print("failure to decode user from JSON")
                           print(error)
-                          
                       }
                 }
                 task.resume()
             }
+    
+    
+    
+    func getAllDoctors(token: NSObject, completion: @escaping (Result<[GetAllDoctors], Error>) -> ()) {
+          
+          //1.create a URLRequest for an API endpoint
+          guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/getall") else {
+              return
+          }
+          
+          var request = URLRequest(url: url)
+          request.httpMethod = "GET"
+          request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+          request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+          
+          //create sessionDataTask
+          let task = URLSession.shared.dataTask(with: request) { data, response, error in
+              
+              if let error = error {
+                   print("Failed to fatch doctors", error)
+                   return
+               }
+               
+               guard let data = data else { return }
+               
+              do{
+                  let object = try JSONDecoder().decode(GetAllDoctors.self, from: data)
+                    print("Response body: \(object)")
+                    print("****************************")
+                   
+                }  catch let error as NSError {
+                    print("failure to decode user from JSON")
+                    print(error)
+                }
+          }
+          task.resume()
+      }
+  }
     
     func deleteAppointmentWithId(id: Int){
         
@@ -376,7 +387,7 @@ class APIManager: NSObject{
     
     // **** PUT REQUESTS ***
     //change note or patientid
-    func putUpdateAppointment(){
+  /*  func putUpdateAppointment(){
         
         
                 let session = URLSession.shared
@@ -420,7 +431,6 @@ class APIManager: NSObject{
                         print(httpResponse.debugDescription)
                     }
                     
-                    //|| data == nil
                     if error != nil  {
                         print("Client error!" )
                         return
@@ -432,7 +442,7 @@ class APIManager: NSObject{
                     }
                     
                    do{
-                        let object = try JSONDecoder().decode(ResponseDoctorsAppointments.self, from: data)
+                        let object = try JSONDecoder().decode(ResponseGetAllAppointments.self, from: data)
                           print("Result is: \(object)")
                           print("Response is: \(response)")
                          
@@ -443,79 +453,13 @@ class APIManager: NSObject{
                           
                       }
                  
-        
-                  //  let object = try? JSONSerialization.jsonObject(with: data, options: [])
-                    // print("\(object)")
-                    //print("\(response)")
                 }
                 task.resume()
-    }
+    } */
     
     
   
-    func getAllDoctors(completion: @escaping (Result<[GetAllDoctors], Error>) -> ()) {
-        
-        //1.create a URLRequest for an API endpoint
-        guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/getall") else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqYW5lQHZoaXMuY29tIiwianRpIjoiZWZjMjY5YWEtMGVmOC00OWRhLWExZWItODQ2Y2NjMGY1NmQxIiwiZW1haWwiOiJqYW5lQHZoaXMuY29tIiwiaWQiOiI0MWY3MWEyMy0wZjgxLTRkNDItOTllZC1iY2I0N2ExODQ5MjIiLCJyb2xlcyI6IlRFQ0hOSUNJQU4iLCJuYmYiOjE2NjU2Njg4NDAsImV4cCI6MTY2NTY3MjQ0MCwiaWF0IjoxNjY1NjY4ODQwfQ.YkcoXl-0WdFToV8RQuwFbizcAp4UNdiTkSLm1Yg7x-Q", forHTTPHeaderField: "Authorization")
-        
-        //create sessionDataTask
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
-            if let error = error {
-                 print("Failed to fatch doctors", error)
-                 return
-             }
-             
-             guard let data = data else { return }
-             
-            
-            do{
-                  let object = try? JSONSerialization.jsonObject(with: data, options: [])
-                   print("result: \(object)")
-                  print("response: \(response)")
-              }
-              catch let error as NSError {
-                  print("failure to decode user from JSON")
-                  print(error)
-              }
-        }
-        task.resume()
-    }
-}
-            
-           
-          /*  do{
-                let object = try? JSONSerialization.jsonObject(with: data, options: [])
-                 print("result: \(object)")
-                print("response: \(response)")
-            }
-            catch let error as NSError {
-                print("failure to decode user from JSON")
-                print(error)
-            }
-              
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("Status code: \(httpResponse.statusCode)")
-                print("\(httpResponse.allHeaderFields)")
-                print(httpResponse.debugDescription)
-            }
-            
-            
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                print("Server error!")
-                return
-            } */
-    
-
 
 /*
 // GET REQUEST
