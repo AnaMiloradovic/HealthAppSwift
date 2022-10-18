@@ -319,7 +319,7 @@ class HomeController: UITableViewController {
     }
     
     func logoutFun(){
-        self.present(LoginController(), animated: true, completion: nil)
+        UIApplication.shared.windows.first!.rootViewController = LoginController()
        
     }
     
