@@ -256,12 +256,6 @@ class HomeController: UITableViewController {
         } 
    
 
-    @objc func handleLogout(){
-       //dismiss(animated: true, completion: nil)
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return appointments.count
     }
@@ -293,6 +287,40 @@ class HomeController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(80)
+    }
+    
+    @IBAction func showAlertDialog(){
+        
+        // Declare Alert
+               let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to Logout?", preferredStyle: .alert)
+
+               // Create OK button with action handler
+               let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button click...")
+                    self.logoutFun()
+               })
+
+               // Create Cancel button with action handlder
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                   print("Cancel button click...")
+               }
+
+               //Add OK and Cancel button to dialog message
+               dialogMessage.addAction(ok)
+               dialogMessage.addAction(cancel)
+
+               // Present dialog message to user
+               self.present(dialogMessage, animated: true, completion: nil)
+        
+    }
+    
+    @objc func handleLogout(){
+        showAlertDialog()
+    }
+    
+    func logoutFun(){
+        self.present(LoginController(), animated: true, completion: nil)
+       
     }
     
    

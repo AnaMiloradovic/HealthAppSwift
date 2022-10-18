@@ -135,8 +135,6 @@ class LoginController: UIViewController {
         print("Token is: \(savedToken)")
         
       
-        
-      
     }
     
     func setupInputsContainerView(){
@@ -223,3 +221,4 @@ extension UIColor{
             self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
         }
 }
+

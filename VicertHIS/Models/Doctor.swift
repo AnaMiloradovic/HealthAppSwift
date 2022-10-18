@@ -29,8 +29,8 @@ struct GetAllDoctors: Codable {
 struct DoctorsResults: Codable {
     let specialization: String?
     let hoursPerWeek: Int?
-    let id, lastName: String?
-    let firstName,email : String
+    let id: String?
+    let firstName,email, lastName : String
     let address, phone: String
     let dateOfBirth: String
 }

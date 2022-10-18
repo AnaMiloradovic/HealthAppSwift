@@ -10,11 +10,10 @@ import UIKit
 class FindCareController: UITableViewController {
     
     let cellId = "cellId"
-    
-    
-   
+    var isUserCurrentlyLoggedIn = true
    
     var results = [DoctorsResults]()
+    //var doctors = GetAllDoctors(from: <#Decoder#>)
     
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     
@@ -27,7 +26,7 @@ class FindCareController: UITableViewController {
                 print("Success")
                 self.results = doctor.result
                // print(doctors)
-                //self.doctors = doctors
+              //  self.doctors = doctor
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -106,7 +105,7 @@ class FindCareController: UITableViewController {
        cell.backgroundColor = .clear
        
        
-       cell.doctorsName.text = results[indexPath.row].firstName
+       cell.doctorsName.text = results[indexPath.row].firstName + " " + results[indexPath.row].lastName
        cell.adressLabel.text = results[indexPath.item].address
        cell.birthLabel.text = results[indexPath.item].dateOfBirth
        cell.phoneLabel.text = results[indexPath.item].phone
@@ -148,14 +147,48 @@ class FindCareController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
        // let doctor = doctors[indexPath.row]
         
-       // let dc = DoctorProfileViewController(doctor: doctor)
-       // navigationController?.pushViewController(dc, animated: true)
+        let result = results[indexPath.row]
+        
+        let dc = DoctorProfileViewController(result: result)
+        navigationController?.pushViewController(dc, animated: true)
     
+    }
+    
+    
+    @IBAction func showAlertDialog(){
+        
+        // Declare Alert
+               let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to Logout?", preferredStyle: .alert)
+
+               // Create OK button with action handler
+               let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button click...")
+                    self.logoutFun()
+               })
+
+               // Create Cancel button with action handlder
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                   print("Cancel button click...")
+               }
+
+               //Add OK and Cancel button to dialog message
+               dialogMessage.addAction(ok)
+               dialogMessage.addAction(cancel)
+
+               // Present dialog message to user
+               self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
     @objc func handleLogout(){
-        self.navigationController?.popToRootViewController(animated: true)
+        showAlertDialog()
     }
+    
+    func logoutFun(){
+        self.present(LoginController(), animated: true, completion: nil)
+       
+    }
+    
 
 }
 

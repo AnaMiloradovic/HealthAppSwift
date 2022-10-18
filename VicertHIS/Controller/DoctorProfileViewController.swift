@@ -17,11 +17,12 @@ class DoctorProfileViewController: UIViewController {
     
     private lazy var stackView: UIStackView = {
         
-        let hStackView = makeHorizontalStackView(image: UIImage(named: "doctor2")!, title: doctor.name!)
-        let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: doctor.adress!)
-        let hStackView3 = makeHorizontalStackView(image: UIImage(named: "email")!, title: doctor.email!)
-        let hStackView4 = makeHorizontalStackView(image: UIImage(named: "phone")!, title: doctor.phoneNumber!)
-        let hStackView5 = makeHorizontalStackView(image: UIImage(named: "calendar2")!, title: doctor.dateOfBirth!)
+        let hStackView = makeHorizontalStackView(image: UIImage(named: "doctor2")!, title: result.firstName + " " + result.lastName )
+       // let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: doctor.adress!)
+        let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: result.address)
+        let hStackView3 = makeHorizontalStackView(image: UIImage(named: "email")!, title: result.email)
+        let hStackView4 = makeHorizontalStackView(image: UIImage(named: "phone")!, title: result.phone)
+        let hStackView5 = makeHorizontalStackView(image: UIImage(named: "calendar2")!, title: result.dateOfBirth)
         let appointmentStackView = makeAppointmentStackView(title: "Free Appointments")
         let appointmentContent = makeAppointmentContent(content: "Click on the date of the appointment to book it")
       
@@ -86,6 +87,20 @@ class DoctorProfileViewController: UIViewController {
     
     
     //sta vracamo
+    
+    
+    let result: DoctorsResults
+    
+    init(result: DoctorsResults){
+        self.result = result
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /*
     let doctor: Doctor
     
     init(doctor: Doctor){
@@ -96,6 +111,7 @@ class DoctorProfileViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+     */
     
 
     override func viewDidLoad() {
@@ -117,14 +133,45 @@ class DoctorProfileViewController: UIViewController {
         
     }
     
-   
-    @objc func handleLogout(){
-        //dismiss(animated: true, completion: nil)
-        self.navigationController?.popToRootViewController(animated: true)
-    }
+    
+    // LOGOUT ALERT BUTTON
+    @IBAction func showAlertDialog(){
+        
+        // Declare Alert
+               let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to Logout?", preferredStyle: .alert)
 
+               // Create OK button with action handler
+               let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button click...")
+                    self.logoutFun()
+               })
+
+               // Create Cancel button with action handlder
+               let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                   print("Cancel button click...")
+               }
+
+               //Add OK and Cancel button to dialog message
+               dialogMessage.addAction(ok)
+               dialogMessage.addAction(cancel)
+
+               // Present dialog message to user
+               self.present(dialogMessage, animated: true, completion: nil)
+        
+    }
+    
+    @objc func handleLogout(){
+        showAlertDialog()
+    }
+    
+    func logoutFun(){
+        self.present(LoginController(), animated: true, completion: nil)
+       
+    }
 }
 
+
+// Calendar
 extension DoctorProfileViewController : FSCalendarDataSource, FSCalendarDelegate{
     
     func setupCalendar(){
