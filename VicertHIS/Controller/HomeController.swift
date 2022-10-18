@@ -224,7 +224,7 @@ class HomeController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController!.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor : UIColor.white ]
      
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
        
     
@@ -256,8 +256,9 @@ class HomeController: UITableViewController {
         } 
    
 
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
+    @objc func handleLogout(){
+       //dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     

@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UITableViewController {
     
+    
+    var doctors = GetAllDoctors.self
     var results = [DoctorsResults]()
     let cellId = "cellId"
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
@@ -19,13 +21,12 @@ class ViewController: UITableViewController {
             switch res {
             case .failure(let error):
                 print("Failed to fetch doctors", error)
-            case .success(let results):
+            case .success(let doctors):
                 print("Success")
-               // print(doctors)
-                self.results = results
-                self.tableView.reloadData()
+                print(doctors)
+               // self.results = results
+                //self.tableView.reloadData()
             }
-            
         }
     }
     
@@ -36,10 +37,11 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
         
-       
         APIManager.shared.postLogin()
+        print("Token is: \(savedToken)")
+       // getAllDoctors()
        // APIManager.shared.getAllAppointments(token: savedToken as! NSObject)
-       getAllDoctors()
+       
         //APIManager.shared.getWithId(id: 1788, token: savedToken as! NSObject)
        
         //APIManager.shared.postResetPassword()

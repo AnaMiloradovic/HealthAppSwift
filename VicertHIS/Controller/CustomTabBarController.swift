@@ -15,8 +15,6 @@ class CustomTabBarController: UITabBarController {
         let homeNavControler = UINavigationController(rootViewController: HomeController())
         homeNavControler.title = "Home"
         
-        
-        
         homeNavControler.tabBarItem.image = UIImage(named: "home")
         
         

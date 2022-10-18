@@ -12,8 +12,9 @@ class FindCareController: UITableViewController {
     let cellId = "cellId"
     
     
+   
+   
     var results = [DoctorsResults]()
-   // var doctors = [GetAllDoctors]()
     
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     
@@ -22,14 +23,20 @@ class FindCareController: UITableViewController {
             switch res {
             case .failure(let error):
                 print("Failed to fetch doctors", error)
-            case .success(let results):
+            case .success(let doctor):
                 print("Success")
-                self.results = results
-                self.tableView.reloadData()
+                self.results = doctor.result
+               // print(doctors)
+                //self.doctors = doctors
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
             }
-            
         }
     }
+    
+    
  /*   let doctors: [Doctor] = {
         
         let doctor1 = Doctor(name: "Kaiden Sidney", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "May 17, 1979", phoneNumber: "123-123-1234", email: "kaiden.sidney@vhis.com")
@@ -45,7 +52,7 @@ class FindCareController: UITableViewController {
 
         
         //view.backgroundColor = UIColor(r: 244, g: 241, b: 255)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         navigationItem.title = "Doctors"
@@ -98,12 +105,16 @@ class FindCareController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! DoctorsCell
        cell.backgroundColor = .clear
        
-       let result = results[indexPath.row]
-       cell.doctorsName.text = result.firstName
-    
-       cell.adressLabel.text = "lalalala"
+       
+       cell.doctorsName.text = results[indexPath.row].firstName
+       cell.adressLabel.text = results[indexPath.item].address
+       cell.birthLabel.text = results[indexPath.item].dateOfBirth
+       cell.phoneLabel.text = results[indexPath.item].phone
+       cell.emailLabel.text = results[indexPath.item].email
+
          
        /*
+        when we use an array oof doctors
         if let name = doctors[indexPath.item].name{
             cell.doctorsName.text = name
         }
@@ -142,8 +153,8 @@ class FindCareController: UITableViewController {
     
     }
     
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
+    @objc func handleLogout(){
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

@@ -43,7 +43,8 @@ class LoginController: UIViewController {
         navBar.tabBar.backgroundColor = .white
         
         let navController = UINavigationController(rootViewController: navBar)
-        present(navController, animated: true, completion: nil)
+        UIApplication.shared.windows.first!.rootViewController = navController
+       // present(navController, animated: true, completion: nil)
     }
     
     lazy var resetButton: UIButton = {
@@ -128,6 +129,10 @@ class LoginController: UIViewController {
         setupLoginButton()
         setupProfileImageView()
         setupResetButton()
+        
+        APIManager.shared.postLogin()
+        let savedToken = UserDefaults.standard.object(forKey: "savedToken")
+        print("Token is: \(savedToken)")
         
       
         

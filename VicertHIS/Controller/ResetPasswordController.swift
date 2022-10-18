@@ -117,7 +117,7 @@ class ResetPasswordController: UIViewController {
         
         view.backgroundColor =  UIColor.white
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         
         view.addSubview(inputsContainerView)
@@ -210,8 +210,9 @@ class ResetPasswordController: UIViewController {
     }
     
     
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
+    @objc func handleLogout(){
+       // dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

@@ -110,7 +110,7 @@ class DoctorProfileViewController: UIViewController {
         navigationItem.titleView?.tintColor = UIColor(r: 68, g: 44, b: 46)
         view.backgroundColor = UIColor(r: 255, g: 255, b: 240)
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = .black
         
         setupCalendar()
@@ -118,8 +118,9 @@ class DoctorProfileViewController: UIViewController {
     }
     
    
-    @objc func handleCancel(){
-        dismiss(animated: true, completion: nil)
+    @objc func handleLogout(){
+        //dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

@@ -301,8 +301,7 @@ class APIManager: NSObject{
             }
     
     
-    
-    func getAllDoctors(token: NSObject, completion: @escaping (Result<[DoctorsResults], Error>) -> ()) {
+    func getAllDoctors(token: NSObject, completion: @escaping (Result<GetAllDoctors, Error>) -> ()) {
           
           //1.create a URLRequest for an API endpoint
           guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/getall") else {
@@ -328,10 +327,12 @@ class APIManager: NSObject{
                   let object = try JSONDecoder().decode(GetAllDoctors.self, from: data)
                     print("Response body: \(object)")
                     print("****************************")
+                    completion(.success(object))
                    
                 }  catch let error as NSError {
-                    print("failure to decode user from JSON")
-                    print(error)
+                   // print("failure to decode user from JSON")
+                    //print(error)
+                    completion(.failure(error))
                 }
           }
           task.resume()
