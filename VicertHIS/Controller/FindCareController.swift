@@ -106,10 +106,10 @@ class FindCareController: UITableViewController {
        
        
        cell.doctorsName.text = results[indexPath.row].firstName + " " + results[indexPath.row].lastName
-       cell.adressLabel.text = results[indexPath.item].address
-       cell.birthLabel.text = results[indexPath.item].dateOfBirth
-       cell.phoneLabel.text = results[indexPath.item].phone
-       cell.emailLabel.text = results[indexPath.item].email
+       cell.adressLabel.text = results[indexPath.row].address
+       cell.birthLabel.text = results[indexPath.row].dateOfBirth
+       cell.phoneLabel.text = results[indexPath.row].phone
+       cell.emailLabel.text = results[indexPath.row].email
 
          
        /*
