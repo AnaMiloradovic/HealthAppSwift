@@ -21,19 +21,31 @@ struct Doctor {
 struct GetAllDoctors: Codable {
     let errors: [String]? //JSONAny
     let token: String?   //JSONNull
-    let result: [DoctorsResults]
-    let roles: [String]
+    let result: [DoctorsResults]?
+    let roles: [String?]
 }
 
 // MARK: - Result
 struct DoctorsResults: Codable {
     let specialization: String?
     let hoursPerWeek: Int?
-    let id: String?
+    let id: String
     let firstName,email, lastName : String
     let address, phone: String
     let dateOfBirth: String
 }
+
+struct CreateDoctor: Codable {
+    let firstName, lastName, email, password: String?
+    let address, phone, dateOfBirth, specialization: String?
+    let hoursPerDay: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case firstName, lastName, email, password, address, phone, dateOfBirth, specialization
+        case hoursPerDay = "HoursPerDay"
+    }
+}
+
 
 
 

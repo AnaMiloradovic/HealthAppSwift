@@ -50,7 +50,7 @@ class APIManager: NSObject{
                
                 do{
                    
-                    let object = try JSONDecoder().decode(ResetPasswordResponse.self, from: data!)
+                    let object = try JSONDecoder().decode(ResetPasswordResult.self, from: data!)
                     print("Result is: \(object)")
                     print("Response is: \(String(describing: response))")
                     print("****************************")
@@ -96,7 +96,7 @@ class APIManager: NSObject{
                 // data -> swift object
                 do{
                    
-                    let welcome = try JSONDecoder().decode(LoginResponse.self, from: data!)
+                    let welcome = try JSONDecoder().decode(LoginResult.self, from: data!)
                     print("Result is: \(welcome)")
                     print("Role is: \(welcome.roles[0])")
                     
@@ -120,7 +120,7 @@ class APIManager: NSObject{
     
     // POST request
     // url: "http://192.168.100.38:81/api/Appointment/createfordoctor"
- /*   func postDoctorsAppointment() {
+  /*  func postDoctorsAppointment() {
        
         //make url object
         guard let url = URL(string: "http://192.168.100.38:81/api/Appointment/createfordoctor") else {
@@ -230,6 +230,47 @@ class APIManager: NSObject{
             }
         }.resume()
     }
+    
+    func postCreateDoctor(token: NSObject) {
+       
+        //make url object
+        guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/create") else {
+            return
+        }
+        let createDoctor = CreateDoctor(firstName: "Nick", lastName: "Johnson", email: "nickJ@gmail.com", password: "nick", address: "First bulevard 22", phone: "123-222-282", dateOfBirth: "1989-07-04T16:30:00", specialization: "Plastic surgeon", hoursPerDay: 12)
+        
+        //make request object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        request.httpBody = try? JSONEncoder().encode(createDoctor)
+      
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                print("Failed to create new doctor!", error)
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do{
+                let object = try JSONDecoder().decode(GetAllDoctors.self, from: data)
+                  print("Response body: \(object)")
+                  print("****************************")
+               //   completion(.success(object))
+                 
+              }  catch let error as NSError {
+                  print("Failure to create user! Try again! (user exists or password is not correct)")
+                  //print(error)
+                  //completion(.failure(error))
+              }
+            }.resume()
+    }
+    
     
     func getAllAppointments(token: NSObject){
         

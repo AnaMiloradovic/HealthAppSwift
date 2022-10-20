@@ -41,6 +41,11 @@ class CustomTabBarController: UITabBarController {
         patientInfoController.title = "Patient info"
         patientInfoController.tabBarItem.image = UIImage(named: "doctor2")
         
+        let technicianDashboard = UINavigationController(rootViewController: TechnicianDashboardController())
+        technicianDashboard.tabBarItem.title = "Dashboard"
+      //  patientInfoController.title = "Patient info"
+        technicianDashboard.tabBarItem.image = UIImage(named: "dashboard3")
+        
         
         let savedRole = UserDefaults.standard.object(forKey: "savedRole")!
         
@@ -50,7 +55,7 @@ class CustomTabBarController: UITabBarController {
         }
         else if (savedRole as AnyObject).debugDescription.caseInsensitiveCompare("TECHNICIAN") == .orderedSame{
             print("technician")
-            viewControllers = [homeNavControler, findCareController, appointmentsNavControler, profileNavControler]
+            viewControllers = [homeNavControler, findCareController, profileNavControler, technicianDashboard]
         }
         else if (savedRole as AnyObject).debugDescription.caseInsensitiveCompare("DOCTOR") == .orderedSame{
             print("doctor")

@@ -120,11 +120,6 @@ struct ResultDoctorsAppointment: Codable {
 }
 
 
-
-
-
-
-
 struct AllUsers: Codable {
     let userId: String
     let startDate: String

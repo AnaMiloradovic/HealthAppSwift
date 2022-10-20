@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 
 
-/*enum AppRole {
-    case patient, doctor, technician
-}*/
 
 class LoginController: UIViewController {
 
@@ -177,6 +174,9 @@ class LoginController: UIViewController {
         
         let savedRole = UserDefaults.standard.object(forKey: "savedRole")!
         print("SAVED ROLE IS: \(String(describing: savedRole))")
+        
+        print("CREATE DOCTOR:")
+        APIManager.shared.postCreateDoctor(token: savedToken as! NSObject)
         
       
     }

@@ -10,7 +10,7 @@ import UIKit
 class FindCareController: UITableViewController {
     
     let cellId = "cellId"
-    var isUserCurrentlyLoggedIn = true
+    //var isUserCurrentlyLoggedIn = true
    
     var results = [DoctorsResults]()
     
@@ -23,7 +23,7 @@ class FindCareController: UITableViewController {
                 print("Failed to fetch doctors", error)
             case .success(let doctor):
                 print("Success")
-                self.results = doctor.result
+                self.results = doctor.result!
                // print(doctors)
               //  self.doctors = doctor
                 DispatchQueue.main.async {

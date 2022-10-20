@@ -23,15 +23,15 @@ struct ResetPassword: Codable {
 
 
 // MARK: - LoginResponse
-struct LoginResponse: Codable {
+struct LoginResult: Codable {
     var errors: [String]?
     var token: String?
-    var result: LoginResult?
+    var result: Login?
     var roles: [String]
 }
 
 // MARK: - Result
-struct LoginResult: Codable {
+struct Login: Codable {
     let seniority, id, firstName, lastName: String?
     let email, address, phone, dateOfBirth: String?
 
@@ -43,7 +43,7 @@ struct LoginResult: Codable {
 }
 
 // MARK: - ResetPasswordResponse
-struct ResetPasswordResponse: Codable {
+struct ResetPasswordResult: Codable {
     let errors: [String?]
     let token, result: String? //JSONNull
     let roles: [String]?
