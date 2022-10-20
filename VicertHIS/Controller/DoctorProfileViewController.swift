@@ -22,7 +22,7 @@ class DoctorProfileViewController: UIViewController {
         let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: result.address)
         let hStackView3 = makeHorizontalStackView(image: UIImage(named: "email")!, title: result.email)
         let hStackView4 = makeHorizontalStackView(image: UIImage(named: "phone")!, title: result.phone)
-        let hStackView5 = makeHorizontalStackView(image: UIImage(named: "calendar2")!, title: result.dateOfBirth)
+        let hStackView5 = makeHorizontalStackView(image: UIImage(named: "calendar2")!, title: result.dateOfBirth.convertDateString())
         let appointmentStackView = makeAppointmentStackView(title: "Free Appointments")
         let appointmentContent = makeAppointmentContent(content: "Click on the date of the appointment to book it")
       

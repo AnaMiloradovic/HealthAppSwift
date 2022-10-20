@@ -106,7 +106,7 @@ class FindCareController: UITableViewController {
        
        cell.doctorsName.text = results[indexPath.row].firstName + " " + results[indexPath.row].lastName
        cell.adressLabel.text = results[indexPath.row].address
-       cell.birthLabel.text = results[indexPath.row].dateOfBirth
+       cell.birthLabel.text = results[indexPath.row].dateOfBirth.convertDateString()
        cell.phoneLabel.text = results[indexPath.row].phone
        cell.emailLabel.text = results[indexPath.row].email
 
@@ -189,6 +189,33 @@ class FindCareController: UITableViewController {
        
     }
     
+
+}
+
+extension String {
+
+
+    func convertDateString() -> String {
+        return convert(dateString: self, fromDateFormat: "yyyy-MM-dd'T'HH:mm:ss", toDateFormat: "dd.MM.yyyy")
+    }
+
+
+    func convert(dateString: String, fromDateFormat: String, toDateFormat: String) -> String {
+
+        let fromDateFormatter = DateFormatter()
+        fromDateFormatter.dateFormat = fromDateFormat
+
+        if let fromDateObject = fromDateFormatter.date(from: dateString) {
+
+            let toDateFormatter = DateFormatter()
+            toDateFormatter.dateFormat = toDateFormat
+
+            let newDateString = toDateFormatter.string(from: fromDateObject)
+            return newDateString
+        }
+
+        return ""
+    }
 
 }
 
