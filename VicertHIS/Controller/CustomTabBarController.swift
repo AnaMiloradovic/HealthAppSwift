@@ -54,7 +54,7 @@ class CustomTabBarController: UITabBarController {
         }
         else if (savedRole as AnyObject).debugDescription.caseInsensitiveCompare("DOCTOR") == .orderedSame{
             print("doctor")
-            viewControllers = [homeNavControler, appointmentsNavControler, profileNavControler, patientInfoController]
+            viewControllers = [ appointmentsNavControler, profileNavControler, patientInfoController]
         }
         else{
             print("Wrong user!")

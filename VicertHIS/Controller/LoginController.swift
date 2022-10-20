@@ -14,34 +14,7 @@ import SnapKit
 }*/
 
 class LoginController: UIViewController {
-    
-    
-   // var response = LoginResponse()
-    
-   /* init(response: LoginResponse){
-        self.response = response
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }*/
-   
-    
-   /* fileprivate func postLogin(){
-        APIManager.shared.postLogin(){ (res) in
-            switch res {
-            case .failure(let error):
-                print("Failed to fetch login user", error)
-            case .success(let user):
-                print("Success")
-                print(user)
-                //self.response = user
-            }
-        }
-    } */
-    
-   
+
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -111,42 +84,7 @@ class LoginController: UIViewController {
         else {
             print("Wrong user!")
         }
-         
-  /*      switch(savedRole){
-            case .PATIENT:
-            
-                    print("patient is here")
-                    //when clicked on handleLogin we want to launch to an empty tab bar with 3 view controllers
-                    let navBar = CustomTabBarController()
-                    navBar.tabBar.backgroundColor = .white
-                    
-                    let navController = UINavigationController(rootViewController: navBar)
-                    UIApplication.shared.windows.first!.rootViewController = navController
-            
-                   
-            
-            case .DOCTOR:
-                print("doctor is here")
-                //when clicked on handleLogin we want to launch to an empty tab bar with 3 view controllers
-                
-                let navBar = CustomTabBarController()
-                navBar.tabBar.backgroundColor = .white
-                
-                let navController = UINavigationController(rootViewController: navBar)
-                UIApplication.shared.windows.first!.rootViewController = navController
-            
-            case .TECHNICAN:
-                print("technician is here")
-            
-                let navBar = CustomTabBarController()
-                navBar.tabBar.backgroundColor = .white
-                
-                let navController = UINavigationController(rootViewController: navBar)
-                UIApplication.shared.windows.first!.rootViewController = navController
-         } */
-        
-       
-       // present(navController, animated: true, completion: nil)
+ 
     }
     
     lazy var resetButton: UIButton = {

@@ -9,7 +9,7 @@ import UIKit
 
 
 
-//da li treba da bude NSObject ili ne ?
+
 class APIManager: NSObject{
     
     static let shared = APIManager()
@@ -75,7 +75,7 @@ class APIManager: NSObject{
         guard let url = URL(string: "http://192.168.100.38:81/api/Identity/login") else {
             return
         }
-        let newLogin = User(email: "Rocky.Balboa@vhis.com", password: "P@ssw0rd")
+        let newLogin = User(email: "Virginia.Apgar@vhis.com", password: "P@ssw0rd")
         
         //make request object
         var request = URLRequest(url: url)
