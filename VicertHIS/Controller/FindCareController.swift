@@ -13,7 +13,6 @@ class FindCareController: UITableViewController {
     var isUserCurrentlyLoggedIn = true
    
     var results = [DoctorsResults]()
-    //var doctors = GetAllDoctors(from: <#Decoder#>)
     
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     

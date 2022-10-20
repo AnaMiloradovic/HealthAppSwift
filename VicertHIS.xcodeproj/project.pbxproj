@@ -27,6 +27,7 @@
 		9782A14428E3481E0045B4B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14328E3481E0045B4B4 /* User.swift */; };
 		97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B2128F5B186003D0E0F /* FSCalendar */; };
 		97FD8B3628F6F180003D0E0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B3528F6F180003D0E0F /* SnapKit */; };
+		97FD8B3A29003166003D0E0F /* PatientInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD8B3929003166003D0E0F /* PatientInfoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		9782A14128E328C10045B4B4 /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
 		9782A14328E3481E0045B4B4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		97FD8B3328F6F092003D0E0F /* VicertHIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VicertHIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97FD8B3929003166003D0E0F /* PatientInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				97632D4128EC2FE700FC51C6 /* ProfileController.swift */,
 				971C9BA628F025970030E1A4 /* FindCareController.swift */,
 				971C9BAD28F035D90030E1A4 /* DoctorProfileViewController.swift */,
+				97FD8B3929003166003D0E0F /* PatientInfoController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				9782A13928E1C10B0045B4B4 /* LoginController.swift in Sources */,
 				9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */,
 				971C9BA728F025970030E1A4 /* FindCareController.swift in Sources */,
+				97FD8B3A29003166003D0E0F /* PatientInfoController.swift in Sources */,
 				9782A12628E1BC390045B4B4 /* SceneDelegate.swift in Sources */,
 				97632D3C28EC2E6E00FC51C6 /* CustomTabBarController.swift in Sources */,
 				9782A14428E3481E0045B4B4 /* User.swift in Sources */,

@@ -22,7 +22,7 @@ struct GetAllDoctors: Codable {
     let errors: [String]? //JSONAny
     let token: String?   //JSONNull
     let result: [DoctorsResults]
-    let roles: [String]?
+    let roles: [String]
 }
 
 // MARK: - Result

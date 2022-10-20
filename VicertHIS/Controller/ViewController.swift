@@ -16,20 +16,6 @@ class ViewController: UITableViewController {
     let cellId = "cellId"
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
     
-    fileprivate func getAllDoctors(){
-        APIManager.shared.getAllDoctors(token: savedToken as! NSObject){ (res) in
-            switch res {
-            case .failure(let error):
-                print("Failed to fetch doctors", error)
-            case .success(let doctors):
-                print("Success")
-                print(doctors)
-               // self.results = results
-                //self.tableView.reloadData()
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,8 +23,9 @@ class ViewController: UITableViewController {
         navigationItem.leftBarButtonItem?.tintColor = UIColor.systemPurple
         
         
-        APIManager.shared.postLogin()
-        print("Token is: \(savedToken)")
+        
+      //  APIManager.shared.postLogin()
+      //  print("Token is: \(savedToken)")
        // getAllDoctors()
        // APIManager.shared.getAllAppointments(token: savedToken as! NSObject)
        

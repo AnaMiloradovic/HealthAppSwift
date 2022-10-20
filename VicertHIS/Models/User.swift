@@ -24,10 +24,10 @@ struct ResetPassword: Codable {
 
 // MARK: - LoginResponse
 struct LoginResponse: Codable {
-    let errors: [String]?
-    let token: String?
-    let result: LoginResult?
-    let roles: [String?]
+    var errors: [String]?
+    var token: String?
+    var result: LoginResult?
+    var roles: [String]
 }
 
 // MARK: - Result

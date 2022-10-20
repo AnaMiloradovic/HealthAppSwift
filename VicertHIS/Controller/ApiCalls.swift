@@ -68,13 +68,14 @@ class APIManager: NSObject{
         }.resume()
     }
     
+    // completion: @escaping (Result<LoginResponse, Error>) -> ()
     func postLogin() {
        
         //make url object
         guard let url = URL(string: "http://192.168.100.38:81/api/Identity/login") else {
             return
         }
-        let newLogin = User(email: "jane@vhis.com", password: "P@ssw0rd")
+        let newLogin = User(email: "Rocky.Balboa@vhis.com", password: "P@ssw0rd")
         
         //make request object
         var request = URLRequest(url: url)
@@ -89,8 +90,6 @@ class APIManager: NSObject{
                 print("error \(httpResponse.statusCode)")
             }
             
-           // print("Data: ")
-            //print(data as! NSData)
             if let error = error {
                 print("There was an error: \(error.localizedDescription)")
             } else{
@@ -99,10 +98,14 @@ class APIManager: NSObject{
                    
                     let welcome = try JSONDecoder().decode(LoginResponse.self, from: data!)
                     print("Result is: \(welcome)")
+                    print("Role is: \(welcome.roles[0])")
+                    
                     UserDefaults.standard.set(welcome.token, forKey: "savedToken")
+                    UserDefaults.standard.set(welcome.roles[0], forKey: "savedRole")
                    
                     print("Response is: \(String(describing: response))")
                     print("****************************")
+                
                    // let res: Result? = welcome.result
                    // print("seniority is: \(res?.seniority)")
                 }  catch let error as NSError {
@@ -110,9 +113,6 @@ class APIManager: NSObject{
                     print(error)
                     
                 }
-               // let object = try? JSONSerialization.jsonObject(with: data!, options: [])
-                //print("\(object)")
-               // print("\(response)")
                 
             }
         }.resume()
