@@ -307,6 +307,51 @@ class APIManager: NSObject{
             }
     
     
+    func deleteDoctorWithId(id: String, token: NSObject, completion: @escaping (Error?) -> ()) {
+            
+                        guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/delete/\(id)") else {
+                            print("Error: cannot create URL")
+                            return
+                        }
+            
+                        // Create the request
+                        var request = URLRequest(url: url)
+                        request.httpMethod = "DELETE"
+                        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+                        URLSession.shared.dataTask(with: request) { data, response, error in
+                            
+                            
+                            DispatchQueue.main.async {
+                                if let error = error {
+                                    completion(error)
+                                    return
+                                }
+                                
+                                if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                                    let errorString = String(data: data ?? Data(), encoding: .utf8)
+                                        ?? ""
+                                    completion(NSError(domain: "", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: errorString]))
+                                }
+                            }
+                            
+                            
+                           
+                         /*   do{
+                                let object = try JSONDecoder().decode(GetAllDoctors.self, from: data!)
+                                  print("Response body: \(object)")
+                                  print("****************************")
+                                  
+                                 
+                              }  catch let error as NSError {
+                                 // print("failure to decode user from JSON")
+                                  //print(error)
+                                
+                              } */
+                        }.resume()
+                    }
+    
+    
     func getWithId(id: Int, token: NSObject){
         
                 let session = URLSession.shared
@@ -426,6 +471,40 @@ class APIManager: NSObject{
                     }
                     task.resume()
     }
+
+
+    func deleteDoctorWithId(id: String, token: NSObject) {
+            
+                        guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/delete/\(id)") else {
+                            print("Error: cannot create URL")
+                            return
+                        }
+            
+                        // Create the request
+                        var request = URLRequest(url: url)
+                        request.httpMethod = "DELETE"
+                        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+                        URLSession.shared.dataTask(with: request) { data, response, error in
+                            
+                            if let error = error {
+                                print(error)
+                                return
+                            }
+                           
+                            do{
+                                let object = try JSONDecoder().decode(GetAllDoctors.self, from: data!)
+                                  print("Response body: \(object)")
+                                  print("****************************")
+                                  
+                                 
+                              }  catch let error as NSError {
+                                 // print("failure to decode user from JSON")
+                                  //print(error)
+                                
+                              }
+                        }.resume()
+                    }
     
     // **** PUT REQUESTS ***
     //change note or patientid

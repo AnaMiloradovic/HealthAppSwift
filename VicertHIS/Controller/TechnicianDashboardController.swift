@@ -125,7 +125,27 @@ class TechnicianDashboardController: UITableViewController {
             navigationController?.pushViewController(dc, animated: true)
         
         }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
+        if editingStyle == .delete {
+            print("Delete doctor")
+            let doctor = self.results[indexPath.row]
+            APIManager.shared.deleteDoctorWithId(id: doctor.id, token: savedToken as! NSObject) { (error) in
+                if let error = error {
+                    print("Failed to delete:", error)
+                    return
+                }
+                
+            }
+            print("Successfully deleted post from server")
+            self.results.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            }
+        }
+    
+
         
         @IBAction func showAlertDialog(){
             
