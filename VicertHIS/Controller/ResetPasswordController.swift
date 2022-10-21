@@ -96,11 +96,11 @@ class ResetPasswordController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        button.addTarget(self, action: #selector(handleResetConfirm), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleCreateDoctor), for: .touchUpInside)
         return button
     }()
     
-    @objc func handleResetConfirm() {
+    @objc func handleCreateDoctor() {
         print(123)
     }
 
