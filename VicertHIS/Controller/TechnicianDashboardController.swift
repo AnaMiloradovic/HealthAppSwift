@@ -11,141 +11,89 @@ class TechnicianDashboardController: UITableViewController {
 
         
         let cellId = "cellId"
-    
-        var results = [DoctorsResults]()
-        
-        let savedToken = UserDefaults.standard.object(forKey: "savedToken")
-        
-        fileprivate func getAllDoctors(){
-            APIManager.shared.getAllDoctors(token: savedToken as! NSObject){ (res) in
-                switch res {
-                case .failure(let error):
-                    print("Failed to fetch doctors", error)
-                case .success(let doctor):
-                    print("Success")
-                    self.results = doctor.result!
-                   // print(doctors)
-                  //  self.doctors = doctor
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
-                }
-            }
-        }
-        
-       
 
         override func viewDidLoad() {
             super.viewDidLoad()
 
-            view.backgroundColor = UIColor.orange
+            view.backgroundColor = UIColor(r: 230, g: 230, b: 250)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-            navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            
-            navigationItem.title = "Manage doctors"
-          // navigationItem.titleView?.tintColor = UIColor(r: 68, g: 44, b: 46)
-            navigationController?.navigationBar.prefersLargeTitles = true
-            
-            let image = UIImage(named: "plus2")
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleCreateDoctor))
-            
-            tableView.register(DoctorsCell.self, forCellReuseIdentifier: cellId)
-            getAllDoctors()
-         
+            navigationItem.leftBarButtonItem?.tintColor = UIColor(r: 48, g: 25, b: 52)
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+           
         }
     
-        @objc func handleCreateDoctor(){
-            
-            //when clicked on newMessage icon we want to launch our createDoctorController
-            let createDoctor = CreateDoctorController()
-            
-            let navController = UINavigationController(rootViewController: createDoctor)
-            present(navController, animated: true, completion: nil)
-            
-        }
-        
 
         // MARK: - Table view data source
         
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return results.count
+            return 3
+          
         }
         
        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! DoctorsCell
-           cell.backgroundColor = .clear
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+            cell.backgroundColor = .clear
+           cell.accessoryType = .disclosureIndicator
            
            
-           cell.doctorsName.text = results[indexPath.row].firstName + " " + results[indexPath.row].lastName
-           cell.adressLabel.text = results[indexPath.row].address
-           cell.birthLabel.text = results[indexPath.row].dateOfBirth.convertDateString()
-           cell.phoneLabel.text = results[indexPath.row].phone
-           cell.emailLabel.text = results[indexPath.row].email
-
-             
-           /*
-            when we use an array oof doctors
-            if let name = doctors[indexPath.item].name{
-                cell.doctorsName.text = name
-            }
-            
-            if let adress = doctors[indexPath.item].adress {
-                  cell.adressLabel.text = adress
-             }
-             
-             if let birth = doctors[indexPath.item].dateOfBirth{
-                 cell.birthLabel.text = birth
-             }
-             
-             if let phone = doctors[indexPath.item].phoneNumber{
-                 cell.phoneLabel.text = phone
-             }
-             
-             if let email = doctors[indexPath.item].email{
-                 cell.emailLabel.text = email
-             } */
-             
-           return cell
+           if indexPath.row == 0 {
+               cell.textLabel?.text = "Manage doctors"
+               if #available(iOS 16.0, *) {
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy, width: .standard)
+               } else {
+                   // Fallback on earlier versions
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy)
+               }
+               cell.textLabel?.textColor = UIColor(r: 48, g: 25, b: 52)
+           }
+           else if indexPath.row == 1 {
+               cell.textLabel?.text = "Manage patients"
+               if #available(iOS 16.0, *) {
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy, width: .standard)
+               } else {
+                   // Fallback on earlier versions
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy)
+               }
+               cell.textLabel?.textColor = UIColor(r: 48, g: 25, b: 52)
+           }
+           else if indexPath.row == 2 {
+               cell.textLabel?.text = "Manage appointments"
+               if #available(iOS 16.0, *) {
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy, width: .standard)
+               } else {
+                   // Fallback on earlier versions
+                   cell.textLabel?.font = .systemFont(ofSize: 24, weight: .heavy)
+               }
+               cell.textLabel?.textColor = UIColor(r: 48, g: 25, b: 52)
+           }
+           
+            return cell
            
            }
         
         override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return CGFloat(200)
+            return CGFloat(100)
         }
 
         override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
             tableView.deselectRow(at: indexPath, animated: true)
-           // let doctor = doctors[indexPath.row]
             
-            let result = results[indexPath.row]
+            if indexPath.row == 0 {
+                let dc = ManageDoctorsController()
+                navigationController?.pushViewController(dc, animated: true)
+            }
+            else if indexPath.row == 1 {
+                let dc = ManagePatientsController()
+                navigationController?.pushViewController(dc, animated: true)
+            }
+            else{
+                let dc = ManageAppointmentsController()
+                navigationController?.pushViewController(dc, animated: true)
+            }
             
-            let dc = DoctorProfileViewController(result: result)
-            navigationController?.pushViewController(dc, animated: true)
-        
         }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            print("Delete doctor")
-            let doctor = self.results[indexPath.row]
-            APIManager.shared.deleteDoctorWithId(id: doctor.id, token: savedToken as! NSObject) { (error) in
-                if let error = error {
-                    print("Failed to delete:", error)
-                    return
-                }
-                
-            }
-            print("Successfully deleted post from server")
-            self.results.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            }
-        }
-    
-
         
         @IBAction func showAlertDialog(){
             

@@ -231,13 +231,15 @@ class APIManager: NSObject{
         }.resume()
     }
     
-    func postCreateDoctor(token: NSObject) {
+    func postCreateDoctor(token: NSObject, doctor: CreateDoctor, completion: @escaping (Error?) -> ()) {
        
         //make url object
         guard let url = URL(string: "http://192.168.100.38:81/api/Doctor/create") else {
             return
         }
-        let createDoctor = CreateDoctor(firstName: "Nick", lastName: "Johnson", email: "nickJ@gmail.com", password: "nick", address: "First bulevard 22", phone: "123-222-282", dateOfBirth: "1989-07-04T16:30:00", specialization: "Plastic surgeon", hoursPerDay: 12)
+      //  let createDoctor = CreateDoctor(firstName: "Nick", lastName: "Johnson", email: "nickJ@gmail.com", password: "nick", address: "First bulevard 22", phone: "123-222-282", dateOfBirth: "1989-07-04T16:30:00", specialization: "Plastic surgeon", hoursPerDay: 12)
+        
+        let createDoctor = doctor
         
         //make request object
         var request = URLRequest(url: url)
@@ -257,11 +259,13 @@ class APIManager: NSObject{
             
             guard let data = data else { return }
             
+            completion(nil)
+            
             do{
                 let object = try JSONDecoder().decode(GetAllDoctors.self, from: data)
                   print("Response body: \(object)")
                   print("****************************")
-               //   completion(.success(object))
+                 // completion(.success(object))
                  
               }  catch let error as NSError {
                   print("Failure to create user! Try again! (user exists or password is not correct)")
@@ -327,7 +331,7 @@ class APIManager: NSObject{
                                     completion(error)
                                     return
                                 }
-                                
+                            
                                 if let response = response as? HTTPURLResponse, response.statusCode != 200 {
                                     let errorString = String(data: data ?? Data(), encoding: .utf8)
                                         ?? ""

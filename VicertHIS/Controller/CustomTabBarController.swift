@@ -16,10 +16,11 @@ class CustomTabBarController: UITabBarController {
         
       //  let currentAppRole = AppRole.technician
         
+        
         let homeNavControler = UINavigationController(rootViewController: HomeController())
         homeNavControler.title = "Home"
         
-        homeNavControler.tabBarItem.image = UIImage(named: "home")
+        homeNavControler.tabBarItem.image = UIImage(named: "home8")
         
         let appointmentsNavControler = UINavigationController(rootViewController: AppointmentsController())
         appointmentsNavControler.tabBarItem.title = "Appointments"
@@ -29,12 +30,12 @@ class CustomTabBarController: UITabBarController {
         let profileNavControler = UINavigationController(rootViewController: ProfileController())
         profileNavControler.tabBarItem.title = "Profile"
         profileNavControler.title = "Profile"
-        profileNavControler.tabBarItem.image = UIImage(named: "profile2")
+        profileNavControler.tabBarItem.image = UIImage(named: "profile3")
         
         let findCareController = UINavigationController(rootViewController: FindCareController())
         findCareController.tabBarItem.title = "Find Care"
         findCareController.title = "Find Care"
-        findCareController.tabBarItem.image = UIImage(named: "doctor2")
+        findCareController.tabBarItem.image = UIImage(named: "findCare3")
         
         let patientInfoController = UINavigationController(rootViewController: PatientInfoController())
         patientInfoController.tabBarItem.title = "Patient info"

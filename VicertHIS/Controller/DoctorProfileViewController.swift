@@ -19,7 +19,7 @@ class DoctorProfileViewController: UIViewController {
         
         let hStackView = makeHorizontalStackView(image: UIImage(named: "doctor2")!, title: result.firstName + " " + result.lastName )
        // let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: doctor.adress!)
-        let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home1")!, title: result.address)
+        let hStackView2 = makeHorizontalStackView(image: UIImage(named: "home8")!, title: result.address)
         let hStackView3 = makeHorizontalStackView(image: UIImage(named: "email")!, title: result.email)
         let hStackView4 = makeHorizontalStackView(image: UIImage(named: "phone")!, title: result.phone)
         let hStackView5 = makeHorizontalStackView(image: UIImage(named: "calendar2")!, title: result.dateOfBirth.convertDateString())
@@ -124,7 +124,7 @@ class DoctorProfileViewController: UIViewController {
         navigationItem.title = "Info"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.titleView?.tintColor = UIColor(r: 68, g: 44, b: 46)
-        view.backgroundColor = UIColor(r: 255, g: 255, b: 240)
+        view.backgroundColor = UIColor(r: 253, g: 245, b: 230)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = .black
@@ -166,7 +166,6 @@ class DoctorProfileViewController: UIViewController {
     
     func logoutFun(){
         UIApplication.shared.windows.first!.rootViewController = LoginController()
-       
     }
 }
 

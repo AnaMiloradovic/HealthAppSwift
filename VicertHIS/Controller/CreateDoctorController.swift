@@ -9,6 +9,8 @@ import UIKit
 
 class CreateDoctorController: UIViewController {
     
+        let savedToken = UserDefaults.standard.object(forKey: "savedToken")
+        
  
         let inputsContainerView: UIView = {
             let view = UIView()
@@ -26,6 +28,7 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "First name"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
         
@@ -43,6 +46,7 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Last name"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
         
@@ -60,13 +64,15 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Email"
             tf.textColor = UIColor(r: 216, g: 191, b: 216)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
+            tf.autocapitalizationType = .none
             return tf
         }()
         
         let emailSeparatorView: UIView = {
             let view = UIView()
             //view.backgroundColor = UIColor(r: 216, g: 191, b: 216)
-           view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+            view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -78,6 +84,7 @@ class CreateDoctorController: UIViewController {
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
             tf.isSecureTextEntry = true
+            tf.autocorrectionType = .no
             return tf
         }()
     
@@ -85,7 +92,7 @@ class CreateDoctorController: UIViewController {
         let passwordSeparatorView: UIView = {
             let view = UIView()
             //view.backgroundColor = UIColor(r: 216, g: 191, b: 216)
-           view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+            view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -95,13 +102,14 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Adress"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
     
         let adressSeparatorView: UIView = {
             let view = UIView()
             //view.backgroundColor = UIColor(r: 216, g: 191, b: 216)
-           view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+            view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -111,13 +119,14 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Phone"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
 
         let phoneSeparatorView: UIView = {
             let view = UIView()
             //view.backgroundColor = UIColor(r: 216, g: 191, b: 216)
-           view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+            view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
             view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
@@ -127,6 +136,7 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Date of birth (dd.MM.yyyy)"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
 
@@ -143,6 +153,7 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Specialization"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
 
@@ -159,6 +170,7 @@ class CreateDoctorController: UIViewController {
             tf.placeholder = "Hours per day"
             tf.textColor = UIColor(r: 49, g: 43.9, b: 59.6)
             tf.translatesAutoresizingMaskIntoConstraints = false
+            tf.autocorrectionType = .no
             return tf
         }()
 
@@ -179,9 +191,58 @@ class CreateDoctorController: UIViewController {
             button.addTarget(self, action: #selector(handleCreateDoctor), for: .touchUpInside)
             return button
         }()
+    
+        
+       
+        
+        @IBAction func showAlertDialog(){
+            
+            // Declare Alert
+                   let dialogMessage = UIAlertController(title: "Created!", message: "Doctor is created successfully!", preferredStyle: .alert)
+
+                   // Create OK button with action handler
+                   let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                        print("Ok button click...")
+                       // self.logoutFun()
+                     
+                       let navBar = CustomTabBarController()
+                        navBar.tabBar.backgroundColor = .white
+                        
+                        let navController = UINavigationController(rootViewController: navBar)
+                        UIApplication.shared.windows.first!.rootViewController = navController 
+                       
+                       self.present(ProfileController(), animated: true)
+                   })
+
+                   //Add OK and Cancel button to dialog message
+                   dialogMessage.addAction(ok)
+
+                   // Present dialog message to user
+                   self.present(dialogMessage, animated: true, completion: nil)
+            
+        }
+    
+        func logoutFun(){
+            UIApplication.shared.windows.first!.rootViewController = ManageDoctorsController()
+           
+        }
+       
         
         @objc func handleCreateDoctor() {
-            print(123)
+            //print(123)
+            let doctor = CreateDoctor(firstName: firstName.text, lastName: lastName.text, email: email.text, password: password.text, address: adress.text, phone: phone.text, dateOfBirth: dateOfBirth.text, specialization: specialization.text, hoursPerDay: Int(hoursPerDay.text!))
+            
+            APIManager.shared.postCreateDoctor(token: savedToken as! NSObject, doctor: doctor) { (error) in
+                if let error = error {
+                    print("Falied to create doctor!", error)
+                    return
+                }
+                print("Finished creating doctor!")
+                ManageDoctorsController.shared.getAllDoctors()
+            }
+            
+            showAlertDialog()
+            
         }
 
         override func viewDidLoad() {

@@ -45,6 +45,7 @@ class UserCell: UITableViewCell{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Day:"
+        //zelena
         label.textColor = UIColor(r: 108, g: 198, b: 68)
         label.font = .systemFont(ofSize: 15, weight: .bold)
         return label
@@ -111,7 +112,7 @@ class UserCell: UITableViewCell{
     }()
     
     
-    let completeButton: UIButton = {
+    lazy var completeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 5
@@ -119,12 +120,14 @@ class UserCell: UITableViewCell{
         button.layer.borderWidth = 1
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
         button.setTitle("Complete", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = UIColor(r: 108, g: 198, b: 68)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         
         return button
     }()
+    
+  
     
     func setupViews(){
         
@@ -155,7 +158,7 @@ class UserCell: UITableViewCell{
         
         dayLabelInput.leftAnchor.constraint(equalTo: dayLabel.rightAnchor).isActive = true
         dayLabelInput.centerYAnchor.constraint(equalTo: dayImage.centerYAnchor).isActive = true
-        dayLabelInput.rightAnchor.constraint(equalTo: completeButton.leftAnchor).isActive = true
+        dayLabelInput.rightAnchor.constraint(equalTo: dayLabel.rightAnchor, constant: 200).isActive = true
         dayLabelInput.heightAnchor.constraint(equalTo: dayImage.heightAnchor).isActive = true
         dayLabelInput.rightAnchor.constraint(equalTo: completeButton.leftAnchor).isActive = true
         
@@ -196,13 +199,12 @@ class UserCell: UITableViewCell{
         patientLabelInput.topAnchor.constraint(equalTo: startTimeInput.bottomAnchor, constant: 5).isActive = true
         patientLabelInput.heightAnchor.constraint(equalTo: patientImage.heightAnchor).isActive = true
         
-        
-        
-        completeButton.topAnchor.constraint(equalTo: dayLabelInput.bottomAnchor, constant: 15).isActive = true
-        completeButton.leftAnchor.constraint(equalTo: dayLabelInput.rightAnchor, constant: 200).isActive = true
+    
+        completeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+        completeButton.leftAnchor.constraint(equalTo: startTimeInput.rightAnchor).isActive = true
         completeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         completeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
-       // completeButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        completeButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -220,20 +222,20 @@ class HomeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController!.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor : UIColor.white ]
      
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.black
        
-    
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        
+        view.backgroundColor = UIColor(r: 240, g: 255, b: 240)
     }
     
     
     //GRADIENT
-    func applyGradient()
+  /*  func applyGradient()
         {
 
             let gradientLayer = CAGradientLayer()
@@ -253,7 +255,7 @@ class HomeController: UITableViewController {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             applyGradient()
-        } 
+        } */
    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -268,17 +270,17 @@ class HomeController: UITableViewController {
         
         if let day = appointments[indexPath.item].date{
             cell.dayLabelInput.text = day
-            cell.dayLabelInput.textColor = .white
+            cell.dayLabelInput.textColor = .black
             cell.dayLabelInput.font = .systemFont(ofSize: 16, weight: .medium)
         }
         if let startTime = appointments[indexPath.item].startTime{
             cell.startTimeInput.text = startTime
-            cell.startTimeInput.textColor = .white
+            cell.startTimeInput.textColor = .black
             cell.startTimeInput.font = .systemFont(ofSize: 16, weight: .heavy)
         }
         if let patient = appointments[indexPath.item].patient{
             cell.patientLabelInput.text = patient
-            cell.patientLabelInput.textColor = .white
+            cell.patientLabelInput.textColor = .black
             cell.patientLabelInput.font = .systemFont(ofSize: 16, weight: .medium)
         }
        
@@ -286,7 +288,7 @@ class HomeController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(80)
+        return CGFloat(100)
     }
     
     @IBAction func showAlertDialog(){

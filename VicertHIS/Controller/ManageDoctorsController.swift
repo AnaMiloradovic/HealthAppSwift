@@ -1,22 +1,22 @@
 //
-//  FindCareController.swift
+//  ManageDoctorsController.swift
 //  VicertHIS
 //
-//  Created by Ana Miloradovic on 7.10.22..
+//  Created by Ana Miloradovic on 2.11.22..
 //
 
 import UIKit
 
-class FindCareController: UITableViewController {
+class ManageDoctorsController: UITableViewController {
+    
     
     let cellId = "cellId"
-    //var isUserCurrentlyLoggedIn = true
-   
-    var results = [DoctorsResults]()
-    
+    static let shared = ManageDoctorsController()
+
     let savedToken = UserDefaults.standard.object(forKey: "savedToken")
-    
-    fileprivate func getAllDoctors(){
+    var results = [DoctorsResults]()
+
+     func getAllDoctors(){
         APIManager.shared.getAllDoctors(token: savedToken as! NSObject){ (res) in
             switch res {
             case .failure(let error):
@@ -24,8 +24,6 @@ class FindCareController: UITableViewController {
             case .success(let doctor):
                 print("Success")
                 self.results = doctor.result!
-               // print(doctors)
-              //  self.doctors = doctor
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -33,70 +31,42 @@ class FindCareController: UITableViewController {
             }
         }
     }
-    
-    
- /*   let doctors: [Doctor] = {
-        
-        let doctor1 = Doctor(name: "Kaiden Sidney", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "May 17, 1979", phoneNumber: "123-123-1234", email: "kaiden.sidney@vhis.com")
-        let doctor2 = Doctor(name: "Cornell Ellison", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jan 29, 1974", phoneNumber: "123-123-1234", email: "cornell.ellison@vhis.com")
-        let doctor3 = Doctor(name: "Douglas Loman", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jun 11, 1978", phoneNumber: "123-123-1234", email: "douglas.loman@vhis.com")
-        let doctor4 = Doctor(name: "Virginia Apgar", adress: "350 Fifth Avenue, Manhattan, New York, 10118", dateOfBirth: "Jan 01, 1970", phoneNumber: "123-1234-123", email: "virginia.apgar@vhis.com")
-        return [doctor1, doctor2, doctor3, doctor4]
-    }()*/
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        //view.backgroundColor = UIColor(r: 244, g: 241, b: 255)
+        view.backgroundColor = UIColor(r: 255, g: 250, b: 240)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = UIColor.black
         
-        navigationItem.title = "Doctors"
+        navigationItem.title = "Manage doctors"
       // navigationItem.titleView?.tintColor = UIColor(r: 68, g: 44, b: 46)
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        view.backgroundColor = UIColor(r: 253, g: 245, b: 230)
+        let image = UIImage(named: "plus2")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleCreateDoctor))
         
         tableView.register(DoctorsCell.self, forCellReuseIdentifier: cellId)
+        getAllDoctors()
      
-        tableView.delegate = self
-        tableView.dataSource = self
+    }
+
+    @objc func handleCreateDoctor(){
         
-        getAllDoctors()   
+        //when clicked on newMessage icon we want to launch our createDoctorController
+        let createDoctor = CreateDoctorController()
+        
+        let navController = UINavigationController(rootViewController: createDoctor)
+        present(navController, animated: true, completion: nil)
+        
     }
     
-    
-    //GRADIENT
-   /* func applyGradient()
-        {
-
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = tableView.bounds
-           
-            //[UIColor(r: 17, g: 28, b: 60).cgColor, UIColor(r: 17, g: 28, b: 500).cgColor]
-            gradientLayer.colors = [UIColor(r: 17, g: 28, b: 187).cgColor, UIColor(r: 255, g: 153, b: 255).cgColor]
-            gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-
-            let backgroundView = UIView(frame: tableView.bounds)
-            backgroundView.layer.insertSublayer(gradientLayer, at: 0)
-
-            tableView.backgroundView = backgroundView
-        }
-      
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            applyGradient()
-        } */
-   
-   
 
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
+      
     }
     
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,6 +102,7 @@ class FindCareController: UITableViewController {
          if let email = doctors[indexPath.item].email{
              cell.emailLabel.text = email
          } */
+       
          
        return cell
        
@@ -146,13 +117,47 @@ class FindCareController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
        // let doctor = doctors[indexPath.row]
         
+     /*   if indexPath.row == 0 {
+            let dc = HomeController()
+            navigationController?.pushViewController(dc, animated: true)
+        }
+        else if indexPath.row == 1 {
+            let dc = ProfileController()
+            navigationController?.pushViewController(dc, animated: true)
+        }
+        else{
+            let dc = HomeController()
+            navigationController?.pushViewController(dc, animated: true)
+            
+        } */
+        
         let result = results[indexPath.row]
         
         let dc = DoctorProfileViewController(result: result)
         navigationController?.pushViewController(dc, animated: true)
     
     }
+
+override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     
+    if editingStyle == .delete {
+        print("Delete doctor")
+        let doctor = self.results[indexPath.row]
+        APIManager.shared.deleteDoctorWithId(id: doctor.id, token: savedToken as! NSObject) { (error) in
+            if let error = error {
+                print("Failed to delete:", error)
+                return
+            }
+            
+        }
+        print("Successfully deleted post from server")
+        self.results.remove(at: indexPath.row)
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        }
+    }
+
+
     
     @IBAction func showAlertDialog(){
         
@@ -190,33 +195,6 @@ class FindCareController: UITableViewController {
     }
     
 
+
+  
 }
-
-extension String {
-
-
-    func convertDateString() -> String {
-        return convert(dateString: self, fromDateFormat: "yyyy-MM-dd'T'HH:mm:ss", toDateFormat: "dd.MM.yyyy")
-    }
-
-
-    func convert(dateString: String, fromDateFormat: String, toDateFormat: String) -> String {
-
-        let fromDateFormatter = DateFormatter()
-        fromDateFormatter.dateFormat = fromDateFormat
-
-        if let fromDateObject = fromDateFormatter.date(from: dateString) {
-
-            let toDateFormatter = DateFormatter()
-            toDateFormatter.dateFormat = toDateFormat
-
-            let newDateString = toDateFormatter.string(from: fromDateObject)
-            return newDateString
-        }
-
-        return ""
-    }
-
-}
-
-

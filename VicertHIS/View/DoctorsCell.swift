@@ -43,7 +43,7 @@ class DoctorsCell: UITableViewCell {
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -61,7 +61,7 @@ class DoctorsCell: UITableViewCell {
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -79,7 +79,7 @@ class DoctorsCell: UITableViewCell {
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -96,7 +96,7 @@ class DoctorsCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .white
+        label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         return label
     }()

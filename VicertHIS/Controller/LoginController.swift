@@ -154,7 +154,7 @@ class LoginController: UIViewController {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         //[UIColor(r: 17, g: 28, b: 60).cgColor, UIColor(r: 17, g: 28, b: 500).cgColor] // 0 187
-        gradientLayer.colors = [UIColor(r: 17, g: 28, b: 187).cgColor, UIColor(r: 255, g: 153, b: 255).cgColor]
+        gradientLayer.colors = [UIColor(r: 255, g: 155, b: 100).cgColor, UIColor(r: 255, g: 255, b: 255).cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         view.addSubview(inputsContainerView)
@@ -170,13 +170,13 @@ class LoginController: UIViewController {
         APIManager.shared.postLogin()
        
         let savedToken = UserDefaults.standard.object(forKey: "savedToken")
-        print("Token is: \(savedToken)")
+        print("Token is: \(String(describing: savedToken))")
         
-        let savedRole = UserDefaults.standard.object(forKey: "savedRole")!
+        let savedRole = UserDefaults.standard.object(forKey: "savedRole")
         print("SAVED ROLE IS: \(String(describing: savedRole))")
         
-        print("CREATE DOCTOR:")
-        APIManager.shared.postCreateDoctor(token: savedToken as! NSObject)
+      //  print("CREATE DOCTOR:")
+      //  APIManager.shared.postCreateDoctor(token: savedToken as! NSObject)
         
       
     }

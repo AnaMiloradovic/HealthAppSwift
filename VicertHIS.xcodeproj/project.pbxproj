@@ -25,6 +25,9 @@
 		9782A13B28E1E2870045B4B4 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */; };
 		9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14128E328C10045B4B4 /* ApiCalls.swift */; };
 		9782A14428E3481E0045B4B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782A14328E3481E0045B4B4 /* User.swift */; };
+		979DAA202912A85000772829 /* ManageDoctorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979DAA1F2912A85000772829 /* ManageDoctorsController.swift */; };
+		979DAA222912A86400772829 /* ManagePatientsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979DAA212912A86400772829 /* ManagePatientsController.swift */; };
+		979DAA242912A87800772829 /* ManageAppointmentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979DAA232912A87800772829 /* ManageAppointmentsController.swift */; };
 		97FD8B2228F5B186003D0E0F /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B2128F5B186003D0E0F /* FSCalendar */; };
 		97FD8B3628F6F180003D0E0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 97FD8B3528F6F180003D0E0F /* SnapKit */; };
 		97FD8B3A29003166003D0E0F /* PatientInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD8B3929003166003D0E0F /* PatientInfoController.swift */; };
@@ -52,6 +55,9 @@
 		9782A13A28E1E2870045B4B4 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		9782A14128E328C10045B4B4 /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
 		9782A14328E3481E0045B4B4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		979DAA1F2912A85000772829 /* ManageDoctorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDoctorsController.swift; sourceTree = "<group>"; };
+		979DAA212912A86400772829 /* ManagePatientsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePatientsController.swift; sourceTree = "<group>"; };
+		979DAA232912A87800772829 /* ManageAppointmentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAppointmentsController.swift; sourceTree = "<group>"; };
 		97FD8B3328F6F092003D0E0F /* VicertHIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VicertHIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97FD8B3929003166003D0E0F /* PatientInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoController.swift; sourceTree = "<group>"; };
 		97FD8B3C290177C0003D0E0F /* TechnicianDashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicianDashboardController.swift; sourceTree = "<group>"; };
@@ -117,7 +123,10 @@
 				971C9BAD28F035D90030E1A4 /* DoctorProfileViewController.swift */,
 				97FD8B3929003166003D0E0F /* PatientInfoController.swift */,
 				97FD8B3C290177C0003D0E0F /* TechnicianDashboardController.swift */,
+				979DAA1F2912A85000772829 /* ManageDoctorsController.swift */,
 				97FD8B3E29018C4A003D0E0F /* CreateDoctorController.swift */,
+				979DAA212912A86400772829 /* ManagePatientsController.swift */,
+				979DAA232912A87800772829 /* ManageAppointmentsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,12 +220,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				97FD8B3D290177C0003D0E0F /* TechnicianDashboardController.swift in Sources */,
+				979DAA222912A86400772829 /* ManagePatientsController.swift in Sources */,
 				9782A12828E1BC390045B4B4 /* ViewController.swift in Sources */,
 				9782A12428E1BC390045B4B4 /* AppDelegate.swift in Sources */,
 				971C9BAC28F02F310030E1A4 /* DoctorsCell.swift in Sources */,
 				9782A14228E328C10045B4B4 /* ApiCalls.swift in Sources */,
 				97632D4028EC2FD500FC51C6 /* AppointmentsController.swift in Sources */,
 				971C9BAE28F035D90030E1A4 /* DoctorProfileViewController.swift in Sources */,
+				979DAA242912A87800772829 /* ManageAppointmentsController.swift in Sources */,
+				979DAA202912A85000772829 /* ManageDoctorsController.swift in Sources */,
 				97632D3A28E5A54F00FC51C6 /* Appointment.swift in Sources */,
 				97632D3E28EC2FA600FC51C6 /* HomeController.swift in Sources */,
 				971C9BA928F02A200030E1A4 /* Doctor.swift in Sources */,
